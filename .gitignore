@@ -1,4 +1,4 @@
-cv_venv/
+cv_env/
 
 *.swp
 ~*
