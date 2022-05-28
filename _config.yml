@@ -38,6 +38,7 @@ baseurl: "/cv" # the subpath of your site, e.g. "/blog".
 
 # Github and twitter are optional:
 minima:
+  skin: dark
   social_links:
     twitter: fastdotai
     github: fastai
@@ -124,3 +125,15 @@ feed:
   
 exclude:
   - settings.ini
+
+header_pages:
+  - about.md
+  - portfolio.md
+
+# Minima date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+#minima:
+#  date_format: "%b %-d, %Y"
+
+#  disqus:
+#    shortname: my_disqus_shortname
