@@ -37,8 +37,8 @@ url: "https://szagar.github.io" # the base hostname & protocol for your site, e.
 baseurl: "/cv" # the subpath of your site, e.g. "/blog".
 
 # Github and twitter are optional:
+#
 minima:
-  skin: dark
   social_links:
     twitter: fastdotai
     github: fastai
@@ -128,7 +128,7 @@ exclude:
 
 header_pages:
   - about.md
-  - portfolio.md
+#  - portfolio.md
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this

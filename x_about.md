@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Not About Me
+title: All About Me
 permalink: /about/
 ---
 
