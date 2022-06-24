@@ -4,21 +4,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Title | fastpages</title>
+<title>Pandas Troubleshooting | fastpages</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Title" />
+<meta property="og:title" content="Pandas Troubleshooting" />
+<meta name="author" content="Stephen Zagar" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
-<meta property="og:description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
-<link rel="canonical" href="https://szagar.github.io/cv/2020/06/01/setup_notes.html" />
-<meta property="og:url" content="https://szagar.github.io/cv/2020/06/01/setup_notes.html" />
+<meta name="description" content="Fixes for problems I’ve had." />
+<meta property="og:description" content="Fixes for problems I’ve had." />
+<link rel="canonical" href="https://szagar.github.io/cv/pandas/python/2022/05/31/troubleshooting_pandas.html" />
+<meta property="og:url" content="https://szagar.github.io/cv/pandas/python/2022/05/31/troubleshooting_pandas.html" />
 <meta property="og:site_name" content="fastpages" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-06-01T00:00:00-05:00" />
+<meta property="article:published_time" content="2022-05-31T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Title" />
+<meta property="twitter:title" content="Pandas Troubleshooting" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-06-01T00:00:00-05:00","datePublished":"2020-06-01T00:00:00-05:00","description":"An easy to use blogging platform with support for Jupyter Notebooks.","headline":"Title","mainEntityOfPage":{"@type":"WebPage","@id":"https://szagar.github.io/cv/2020/06/01/setup_notes.html"},"url":"https://szagar.github.io/cv/2020/06/01/setup_notes.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stephen Zagar"},"dateModified":"2022-05-31T00:00:00-05:00","datePublished":"2022-05-31T00:00:00-05:00","description":"Fixes for problems I’ve had.","headline":"Pandas Troubleshooting","mainEntityOfPage":{"@type":"WebPage","@id":"https://szagar.github.io/cv/pandas/python/2022/05/31/troubleshooting_pandas.html"},"url":"https://szagar.github.io/cv/pandas/python/2022/05/31/troubleshooting_pandas.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/cv/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://szagar.github.io/cv/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/cv/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -73,9 +74,11 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Title</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-01T00:00:00-05:00" itemprop="datePublished">
-        Jun 1, 2020
-      </time>
+    <h1 class="post-title p-name" itemprop="name headline">Pandas Troubleshooting</h1><p class="page-description">Fixes for problems I've had.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-05-31T00:00:00-05:00" itemprop="datePublished">
+        May 31, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Stephen Zagar</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -84,30 +87,40 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/cv/categories/#pandas">pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/cv/categories/#python">python</a>
+        
+      
+      </p>
+    
 
     
       
         <div class="pb-5 d-flex flex-justify-center">
           <div class="px-2">
 
-    <a href="https://github.com/szagar/cv/tree/master/_notebooks/2020-06-01-setup_notes.ipynb" role="button" target="_blank">
+    <a href="https://github.com/szagar/cv/tree/master/_notebooks/2022-05-31-troubleshooting_pandas.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/cv/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/szagar/cv/master?filepath=_notebooks%2F2020-06-01-setup_notes.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/szagar/cv/master?filepath=_notebooks%2F2022-05-31-troubleshooting_pandas.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/cv/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/szagar/cv/blob/master/_notebooks/2020-06-01-setup_notes.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/szagar/cv/blob/master/_notebooks/2022-05-31-troubleshooting_pandas.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/cv/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
           <div class="px-2">
-  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fszagar%2Fcv%2Fblob%2Fmaster%2F_notebooks%2F2020-06-01-setup_notes.ipynb" target="_blank">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fszagar%2Fcv%2Fblob%2Fmaster%2F_notebooks%2F2022-05-31-troubleshooting_pandas.ipynb" target="_blank">
       <img class="notebook-badge-image" src="/cv/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
   </a>
 </div>
@@ -116,40 +129,20 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul id="toc" class="section-nav">
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-06-01-setup_notes.ipynb
+# file to edit: _notebooks/2022-05-31-troubleshooting_pandas.ipynb
 -->
 
 <div class="container" id="notebook-container">
         
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Converting-the-pages-locally">Converting the pages locally<a class="anchor-link" href="#Converting-the-pages-locally"> </a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>convert your notebooks and word documents to .md posts in _posts <br />
-<code>make convert</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4>Launch just the jekyll server <br /></h4>
-<p><code>make server</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://github.com/szagar/cv/blob/master/_fastpages_docs/DEVELOPMENT.md">more notes</a></p>
+<p>*<a href="https://www.roelpeters.be/solved-dtypewarning-columns-have-mixed-types-specify-dtype-option-on-import-or-set-low-memory-in-pandas/">dtype warning</a></p>
 
 </div>
 </div>
@@ -158,7 +151,15 @@ window.onload = wrap_img;
 
 
 
-  </div><a class="u-url" href="/cv/2020/06/01/setup_notes.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="szagar/cv"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/cv/pandas/python/2022/05/31/troubleshooting_pandas.html" hidden></a>
 </article>
 
       </div>
