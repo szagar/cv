@@ -1,7 +1,7 @@
 ---
 keywords: fastai
 description: Things to watch or read.
-title: Bookmarks
+title: Bookmarks - 2022-05-30
 toc: true
 branch: master
 badges: true
@@ -77,9 +77,7 @@ layout: notebook
 
 </div>
 </div>
-</div>### Articles
-//* [Mermaid_ Create diagrams quickly and effortlessly]({{ site.url }}/assets/mermaid_create_diagrams_quickly_and_effortlessly.pdf)
-
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Reference">Reference<a class="anchor-link" href="#Reference"> </a></h3><ul>
