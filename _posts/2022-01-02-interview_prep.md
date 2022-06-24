@@ -1,7 +1,7 @@
 ---
 keywords: fastai
 description: Link and notes that may be helpful for interview prep.
-title: Interview Preperation
+title: Interview Preparation
 toc: true
 branch: master
 badges: true
