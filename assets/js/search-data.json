@@ -13,83 +13,6 @@
   
     
         ,"post1": {
-            "title": "Python Code Style",
-            "content": "Comments . Tagging: # TODO: | # BUG: | # FIXME: | . | . Docstrings . PEP 257 | realpython | Docstring Types:: (function, class, class method, module, package, and script) | Docstring Formats: The different docstring “formats” (Google, NumPy/SciPy, reStructuredText, and Epytext) | . &quot;&quot;&quot;This is the summary line This is the further elaboration of the docstring. Within this section, you can elaborate further on details as appropriate for the situation. Notice that the summary and the elaboration is separated by a blank new line. &quot;&quot;&quot; # Notice the blank line above. Code should continue on this line. Class Docstrings . A brief summary of its purpose and behavior | Any public methods, along with a brief description | Any class properties (attributes) | Anything related to the interface for subclassers, if the class is intended to be subclassed | . class SimpleClass: &quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot; def say_hello(self, name: str): &quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot; print(f&#39;Hello {name}&#39;) . example: . class Animal: &quot;&quot;&quot; A class used to represent an Animal ... Attributes - says_str : str a formatted string to print out what the animal says name : str the name of the animal sound : str the sound that the animal makes num_legs : int the number of legs the animal has (default 4) Methods - says(sound=None) Prints the animals name and what sound it makes &quot;&quot;&quot; says_str = &quot;A {name} says {sound}&quot; def __init__(self, name, sound, num_legs=4): &quot;&quot;&quot; Parameters - name : str The name of the animal sound : str The sound the animal makes num_legs : int, optional The number of legs the animal (default is 4) &quot;&quot;&quot; self.name = name self.sound = sound self.num_legs = num_legs def says(self, sound=None): &quot;&quot;&quot;Prints what the animals name is and what sound it makes. If the argument `sound` isn&#39;t passed in, the default Animal sound is used. Parameters - sound : str, optional The sound the animal makes (default is None) Raises NotImplementedError If no sound is set for the animal or passed in as a parameter. &quot;&quot;&quot; if self.sound is None and sound is None: raise NotImplementedError(&quot;Silent Animals are not supported!&quot;) out_sound = self.sound if sound is None else sound print(self.says_str.format(name=self.name, sound=out_sound)) .",
-            "url": "https://szagar.github.io/cv/development/notes/python/style/2022/06/29/notes-python_style.html",
-            "relUrl": "/development/notes/python/style/2022/06/29/notes-python_style.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post2": {
-            "title": "Pydantic Notes",
-            "content": "&quot;&quot;&quot; Basic example showing how to read and validate data from a file using Pydantic. &quot;&quot;&quot; import json from typing import List, Optional import pydantic class ISBNMissingError(Exception): &quot;&quot;&quot;Custom error that is raised when both ISBN10 and ISBN13 are missing.&quot;&quot;&quot; def __init__(self, title: str, message: str) -&gt; None: self.title = title self.message = message super().__init__(message) class ISBN10FormatError(Exception): &quot;&quot;&quot;Custom error that is raised when ISBN10 doesn&#39;t have the right format.&quot;&quot;&quot; def __init__(self, value: str, message: str) -&gt; None: self.value = value self.message = message super().__init__(message) class Author(pydantic.BaseModel): name: str verified: bool class Book(pydantic.BaseModel): &quot;&quot;&quot;Represents a book with that you can read from a JSON file.&quot;&quot;&quot; title: str author: str publisher: str price: float isbn_10: Optional[str] isbn_13: Optional[str] subtitle: Optional[str] author2: Optional[Author] @pydantic.root_validator(pre=True) @classmethod def check_isbn_10_or_13(cls, values): &quot;&quot;&quot;Make sure there is either an isbn_10 or isbn_13 value defined&quot;&quot;&quot; if &quot;isbn_10&quot; not in values and &quot;isbn_13&quot; not in values: raise ISBNMissingError( title=values[&quot;title&quot;], message=&quot;Document should have either an ISBN10 or ISBN13&quot;, ) return values @pydantic.validator(&quot;isbn_10&quot;) @classmethod def isbn_10_valid(cls, value) -&gt; None: &quot;&quot;&quot;Validator to check whether ISBN10 is valid&quot;&quot;&quot; chars = [c for c in value if c in &quot;0123456789Xx&quot;] if len(chars) != 10: raise ISBN10FormatError(value=value, message=&quot;ISBN10 should be 10 digits.&quot;) def char_to_int(char: str) -&gt; int: if char in &quot;Xx&quot;: return 10 return int(char) if sum((10 - i) * char_to_int(x) for i, x in enumerate(chars)) % 11 != 0: raise ISBN10FormatError( value=value, message=&quot;ISBN10 digit sum should be divisible by 11.&quot; ) return value class Config: &quot;&quot;&quot;Pydantic config class&quot;&quot;&quot; allow_mutation = False anystr_lower = True def main() -&gt; None: &quot;&quot;&quot;Main function.&quot;&quot;&quot; data = json.loads(data_json) books: List[Book] = [Book(**item) for item in data] print(books[0]) print(books[0].dict(exclude={&quot;price&quot;})) print(books[1].copy()) return # Read data from a JSON file with open(&quot;./data.json&quot;) as file: data = json.load(file) books: List[Book] = [Book(**item) for item in data] # print(books) print(books[0]) # print(books[0].dict(exclude={&quot;price&quot;})) # print(books[1].copy()) if __name__ == &quot;__main__&quot;: main() . title=&#39;zero to one&#39; author=&#39;peter thiel&#39; publisher=&#39;ballantine books&#39; price=14.29 isbn_10=&#39;0753555190&#39; isbn_13=&#39;978-0753555194&#39; subtitle=&#39;notes on startups, or how to build the future&#39; author2=Author(name=&#39;Peter Thiel&#39;, verified=True) {&#39;title&#39;: &#39;zero to one&#39;, &#39;author&#39;: &#39;peter thiel&#39;, &#39;publisher&#39;: &#39;ballantine books&#39;, &#39;isbn_10&#39;: &#39;0753555190&#39;, &#39;isbn_13&#39;: &#39;978-0753555194&#39;, &#39;subtitle&#39;: &#39;notes on startups, or how to build the future&#39;, &#39;author2&#39;: {&#39;name&#39;: &#39;Peter Thiel&#39;, &#39;verified&#39;: True}} title=&#39;the lean startup&#39; author=&#39;eric ries&#39; publisher=&#39;penguin uk&#39; price=12.96 isbn_10=&#39;0670921602&#39; isbn_13=&#39;978-0670921607&#39; subtitle=&#39;how relentless change creates radically successful businesses&#39; author2=None . data.json . data_json = &#39;&#39;&#39;[ { &quot;title&quot;: &quot;Zero to One&quot;, &quot;subtitle&quot;: &quot;Notes on Startups, or How to Build the Future&quot;, &quot;author&quot;: &quot;Peter Thiel&quot;, &quot;publisher&quot;: &quot;Ballantine Books&quot;, &quot;isbn_10&quot;: &quot;0753555190&quot;, &quot;isbn_13&quot;: &quot;978-0753555194&quot;, &quot;price&quot;: 14.29, &quot;author2&quot;: { &quot;name&quot;: &quot;Peter Thiel&quot;, &quot;verified&quot;: true } }, { &quot;title&quot;: &quot;The Lean Startup&quot;, &quot;subtitle&quot;: &quot;How Relentless Change Creates Radically Successful Businesses&quot;, &quot;author&quot;: &quot;Eric Ries&quot;, &quot;publisher&quot;: &quot;Penguin UK&quot;, &quot;isbn_10&quot;: &quot;0670921602&quot;, &quot;isbn_13&quot;: &quot;978-0670921607&quot;, &quot;price&quot;: 12.96 }, { &quot;title&quot;: &quot;A Promised Land&quot;, &quot;author&quot;: &quot;Barack Obama&quot;, &quot;publisher&quot;: &quot;Viking UK&quot;, &quot;isbn_10&quot;: &quot;0241491517&quot;, &quot;isbn_13&quot;: &quot;978-0241491515&quot;, &quot;price&quot;: 31.74 }, { &quot;title&quot;: &quot;The Hard Thing about Hard Things&quot;, &quot;subtitle&quot;: &quot;Building a Business When There Are No Easy Answers&quot;, &quot;author&quot;: &quot;Ben Horowitz&quot;, &quot;publisher&quot;: &quot;HarperBusiness&quot;, &quot;isbn_10&quot;: &quot;0062273205&quot;, &quot;isbn_13&quot;: &quot;978-0062273208&quot;, &quot;price&quot;: 15.55 }, { &quot;title&quot;: &quot;Design patterns&quot;, &quot;subtitle&quot;: &quot;Elements of reusable object-oriented software&quot;, &quot;author&quot;: &quot;Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides&quot;, &quot;publisher&quot;: &quot;Addison Wesley&quot;, &quot;isbn_10&quot;: &quot;0201633612&quot;, &quot;isbn_13&quot;: &quot;978-0201633610&quot;, &quot;price&quot;: 50 }, { &quot;title&quot;: &quot;Clean Code&quot;, &quot;subtitle&quot;: &quot;A Handbook of Agile Software Craftsmanship&quot;, &quot;author&quot;: &quot;Robert Martin&quot;, &quot;publisher&quot;: &quot;Financial Times Prentice Hall&quot;, &quot;isbn_10&quot;: &quot;0132350882&quot;, &quot;isbn_13&quot;: &quot;978-0132350884&quot;, &quot;price&quot;: 33.43 } ] &#39;&#39;&#39; . does dataclass support slots? . from dataclasses import dataclass, field, astuple, asdict . @dataclass(frozen=True, order=True) class Comment: id: int text: str = &quot;&quot; replies: list[int] = field(default_factory=list) . use default_factory for mutable defaults replies: list[int] = field(default_factory=List) | . | . attr . has slots | . pydantic .",
-            "url": "https://szagar.github.io/cv/development/notes/python/pydantic/dataclass/2022/06/29/notes-python_pydantic.html",
-            "relUrl": "/development/notes/python/pydantic/dataclass/2022/06/29/notes-python_pydantic.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post3": {
-            "title": "Dataclass Notes",
-            "content": "youtube . Elegant Solutions for Everyday Python | Thinking Outside the GIL with AsyncIO and Multiprocessing | . inspect . from dataclasses import dataclass @dataclass(frozen=True, order=True) class Comment: id: int text: str = &quot;&quot; import inspect import pprint pprint.pprint(inspect.getmembers(Comment, inspect.isfunction)) . [(&#39;__delattr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__delattr__ at 0x109c1ea60&gt;), (&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x109c1e700&gt;), (&#39;__ge__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__ge__ at 0x109c1e940&gt;), (&#39;__gt__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__gt__ at 0x109c1e8b0&gt;), (&#39;__hash__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__hash__ at 0x109c1eaf0&gt;), (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x109c1e670&gt;), (&#39;__le__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__le__ at 0x109c1e820&gt;), (&#39;__lt__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__lt__ at 0x109c1e790&gt;), (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x109c1e5e0&gt;), (&#39;__setattr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__setattr__ at 0x109c1e9d0&gt;)] . import pprint .",
-            "url": "https://szagar.github.io/cv/development/notes/python/dataclass/2022/06/29/notes-python_dataclass_.html",
-            "relUrl": "/development/notes/python/dataclass/2022/06/29/notes-python_dataclass_.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post4": {
-            "title": "Encoding Notes",
-            "content": "inspect . b&#39;a string&#39;.decode(&#39;ascii&#39;) . &#39;a string&#39; . To get bytes from string, encode it. . &#39;a string&#39;.encode(&#39;ascii&#39;) . b&#39;a string&#39;.decode(&#39;utf-8&#39;) . &#39;a string&#39; . Unicode is international standard 3 of the most popular encoding standards defined by Unicode are UTF-8, UTF-16 and UTF-32. . UTF-8: It uses 1, 2, 3 or 4 bytes to encode every code point. It is backwards compatible with ASCII. All English characters just need 1 byte — which is quite efficient. We only need more bytes if we are sending non-English characters. It is the most popular form of encoding, and is by default the encoding in Python 3. In Python 2, the default encoding is ASCII (unfortunately). . We need encode method to convert unicode code points to bytes. This will happen typically during writing string data to a CSV or JSON file for example. We need decode method to convert bytes to unicode code points. This will typically happen during reading data from a file into strings. . Why are encode and decode methods needed? . What data types in Python handle Unicode code points and bytes? As we discussed earlier, in Python, strings can either be represented in bytes or unicode code points. The main takeaways in Python are: | Python 2 uses str type to store bytes and unicode type to store unicode code points. All strings by default are str type — which is bytes~ And Default encoding is ASCII. So if an incoming file is Cyrillic characters, Python 2 might fail because ASCII will not be able to handle those Cyrillic Characters. In this case, we need to remember to use decode(&quot;utf-8&quot;) during reading of files. This is inconvenient. | Python 3 came and fixed this. Strings are stillstr type by default but they now mean unicode code points instead — we carry what we see. If we want to store these str type strings in files we use bytes type instead. Default encoding is UTF-8 instead of ASCII. Perfect! |",
-            "url": "https://szagar.github.io/cv/development/notes/python/encoding/2022/06/29/notes-python-encoding.html",
-            "relUrl": "/development/notes/python/encoding/2022/06/29/notes-python-encoding.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post5": {
-            "title": "Title",
-            "content": "import numpy as np . ModuleNotFoundError Traceback (most recent call last) Input In [1], in &lt;cell line: 1&gt;() -&gt; 1 import numpy as np ModuleNotFoundError: No module named &#39;numpy&#39; . import random rnd = random.Random(1234) for _ in range(10): print(np.random.randint(2,3)) for _ in range(10): print(rnd.randint(2,3)) . 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 3 2 2 . c = np.arange(10) . c.shape = (5,2) c . array([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]) . c=c.T c . array([[0, 2, 4, 6, 8], [1, 3, 5, 7, 9]]) . c.reshape(5,2) . array([[0, 2], [4, 6], [8, 1], [3, 5], [7, 9]]) . c.flatten() . array([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]) . a = np.arange(15).reshape(3, 5) a . array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]]) . v = a[1:3,:] . v . array([[ 5, 6, 99, 8, 9], [10, 11, 12, 13, 14]]) . a . array([[ 0, 1, 2, 3, 4], [ 5, 6, 99, 8, 9], [10, 11, 12, 13, 14]]) . v[0] = 99 . v . array([[99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . v[1] . array([10, 11, 12, 13, 14]) . v[1][1] . 11 . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . m = np.logical_and(a &gt; 12, a &lt; 99) m . array([[False, False, False, False, False], [False, False, False, False, False], [False, False, False, True, True]]) . a &gt; 98 . array([[False, False, False, False, False], [ True, True, True, True, True], [False, False, False, False, False]]) . a[m] = -5 . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, -5, -5]]) . v . array([[99, 99, 99, 99, 99], [10, 11, 12, -5, -5]]) . b = np.arange(15).reshape(3, 5) . b . array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]]) . b[[0,2],:] . array([[ 0, 1, 2, 3, 4], [10, 11, 12, 13, 14]]) . b[[True,False,True],2:4] . array([[ 2, 3], [12, 13]]) . np.ones(2,str) . array([&#39;1&#39;, &#39;1&#39;], dtype=&#39;&lt;U1&#39;) . cs = np.arange(10) cs . array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) . print(cs.cumsum()) . [ 0 1 3 6 10 15 21 28 36 45] . import pandas as pd . data = {&#39;Name&#39;:[&#39;Tom&#39;,&#39;nick&#39;,&#39;krish&#39;], &#39;Age&#39;:[20,21,19]} df = pd.DataFrame(data) df . Name Age . 0 Tom | 20 | . 1 nick | 21 | . 2 krish | 19 | . df[[&#39;Age&#39;]] . Age . 0 20 | . 1 21 | . 2 19 | . df.iloc[0:2][&#39;Age&#39;] . 0 20 1 21 Name: Age, dtype: int64 . df[0:1][[&#39;Name&#39;,&#39;Age&#39;]] . Name Age . 0 Tom | 20 | .",
-            "url": "https://szagar.github.io/cv/2022/06/29/notes-numpy.html",
-            "relUrl": "/2022/06/29/notes-numpy.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post6": {
-            "title": "Git Notes",
-            "content": "diff . dunk | . b&#39;a string&#39;.decode(&#39;utf-8&#39;) . &#39;a string&#39; . Unicode is international standard 3 of the most popular encoding standards defined by Unicode are UTF-8, UTF-16 and UTF-32. . UTF-8: It uses 1, 2, 3 or 4 bytes to encode every code point. It is backwards compatible with ASCII. All English characters just need 1 byte — which is quite efficient. We only need more bytes if we are sending non-English characters. It is the most popular form of encoding, and is by default the encoding in Python 3. In Python 2, the default encoding is ASCII (unfortunately). . We need encode method to convert unicode code points to bytes. This will happen typically during writing string data to a CSV or JSON file for example. We need decode method to convert bytes to unicode code points. This will typically happen during reading data from a file into strings. . Why are encode and decode methods needed? . What data types in Python handle Unicode code points and bytes? As we discussed earlier, in Python, strings can either be represented in bytes or unicode code points. The main takeaways in Python are: | Python 2 uses str type to store bytes and unicode type to store unicode code points. All strings by default are str type — which is bytes~ And Default encoding is ASCII. So if an incoming file is Cyrillic characters, Python 2 might fail because ASCII will not be able to handle those Cyrillic Characters. In this case, we need to remember to use decode(&quot;utf-8&quot;) during reading of files. This is inconvenient. | Python 3 came and fixed this. Strings are stillstr type by default but they now mean unicode code points instead — we carry what we see. If we want to store these str type strings in files we use bytes type instead. Default encoding is UTF-8 instead of ASCII. Perfect! |",
-            "url": "https://szagar.github.io/cv/development/notes/git/2022/06/29/notes-git.html",
-            "relUrl": "/development/notes/git/2022/06/29/notes-git.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post7": {
-            "title": "Docker notes",
-            "content": "Docker Hun . szagr / | . Building images . # Dockerfile FROM ubuntu RUN apt update &amp;&amp; apt install -y cowsay CMD [&quot;/usr/games/cowsay&quot;, &quot;Dockerfiles are cool!&quot;]# Dockerfile FROM python 3.7.5-slim RUN python -m pip install parse realpython-reader REPL . -it needed to run container interactively$ docker run -it --rm python:rc . | . Docker CLI . docker --help | Build an image from Dockerfile . with cowsay tag, usiner Dockerfile in current dir$ docker build -t cowsay . . | . | List images . $ docker images ps -a . | List containers . $ docker docker ps -a . | Run the image . -rm cleans up container afer use$ docker run -rm cowsay . | . | Delete image . $ docker rmi &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; Delete container . $ docker rm &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; . | . | .",
-            "url": "https://szagar.github.io/cv/development/notes/deployment/docker/2022/06/29/notes-docker.html",
-            "relUrl": "/development/notes/deployment/docker/2022/06/29/notes-docker.html",
-            "date": " • Jun 29, 2022"
-        }
-        
-    
-  
-    
-        ,"post8": {
             "title": "Setup Notes",
             "content": "Jupyter . add kernel python -m ipykernel install --user --name=myenv | . jupyter setup . python -m venv cv_env | source cv_env/bin/activate | /Users/szagar/work/blog/cv/cv_env/bin/python -m pip install --upgrade pip | pip install jupyter | pip install ipykernel | python -m ipykernel install --name=cv-venv | . jupyter tools . list jupyter virtual envs: jupyter kernelspec list | remove jupyter virtual envs: jupyter kernelspec uninstall &lt;venv name&gt; | . jekyll notes . convert your notebooks and word documents to .md posts in _posts make convert . | Launch just the jekyll server make server . | . fastpages notes . all available commands : make | run the blog with live preview : make server first time, it&#39;ll build the required Docker images | monitors any changes in ./_notebooks/.ipynb/ and ./_word/.docx;*.doc and rebuild the blog on change | Jekyll server on https://127.0.0.1:4000 | . | run all services in the background : make server-detached | stop the services : make stop | restart just the Jekyll server, already running in the background : restart-jekyll . | troubleshoot: If containers won&#39;t start: try make build first, this would rebuild all the containers from scratch . | more notes . | . nbdev . setup repo via template | clone repo | create venv | add kernel to jupyter | in jupyter terminal: pip install nbdev | edit settings.ini # lib_name = your_project_name # repo_name = name of github repo # user = your_github_username # description = A description of your project # keywords = some keywords # author = Your Name # author_email = email@example.com # copyright = Your Name or Company Name # branch = The default branch of your GitHub repo (usually either master or main) . | install git hooks, from project folder: nbdev_install_git_hooks | start jupyter lab, open 00_core.ipynb | add code, examples, test and markdown headings | Build lib (create the python module): nbdev_build_lib | create your documentation home page and README.md Edit index.ipynb edit import statement | edit install comment | add some examples | . | Build docs nbdev_build_docs | . | notes: . if notebook conflicts appear, run: nbdev_fix_merge filename.ipynb | if using a subdirectory to contain .ipynb files (nbs_path set to be anything other than the project root) either install these modules locally, as their relative import will take you beyond the top-level package, which can be done by running pip install -e . in the project root, to install the modules to your environment in editable mode. | or make a simlink in your notebook folder to the library folder, which can be done by running ln -s lib_path lib_name (adjust lib_path and lib_name to your use case). | . | .",
             "url": "https://szagar.github.io/cv/development/notes/setup/2022/06/20/setup_notes.html",
@@ -100,7 +23,7 @@
     
   
     
-        ,"post9": {
+        ,"post2": {
             "title": "pyscript notes",
             "content": "Articles . Real Python - A First Look at PyScript: Python in the Web Browser | .",
             "url": "https://szagar.github.io/cv/development/python/web/pyscript/2022/06/20/pyscript_notes.html",
@@ -111,7 +34,7 @@
     
   
     
-        ,"post10": {
+        ,"post3": {
             "title": "AirFlow Notes",
             "content": "",
             "url": "https://szagar.github.io/cv/development/notes/airflow/2022/06/20/notest_AirFlow.html",
@@ -122,29 +45,51 @@
     
   
     
-        ,"post11": {
-            "title": "Options",
-            "content": "",
-            "url": "https://szagar.github.io/cv/development/notes/options/2022/06/20/notes_options.html",
-            "relUrl": "/development/notes/options/2022/06/20/notes_options.html",
+        ,"post4": {
+            "title": "Python Code Style",
+            "content": "Comments . Tagging: # TODO: | # BUG: | # FIXME: | . | . Docstrings . PEP 257 | realpython | Docstring Types:: (function, class, class method, module, package, and script) | Docstring Formats: The different docstring “formats” (Google, NumPy/SciPy, reStructuredText, and Epytext) | . &quot;&quot;&quot;This is the summary line This is the further elaboration of the docstring. Within this section, you can elaborate further on details as appropriate for the situation. Notice that the summary and the elaboration is separated by a blank new line. &quot;&quot;&quot; # Notice the blank line above. Code should continue on this line. Class Docstrings . A brief summary of its purpose and behavior | Any public methods, along with a brief description | Any class properties (attributes) | Anything related to the interface for subclassers, if the class is intended to be subclassed | . class SimpleClass: &quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot; def say_hello(self, name: str): &quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot; print(f&#39;Hello {name}&#39;) . example: . class Animal: &quot;&quot;&quot; A class used to represent an Animal ... Attributes - says_str : str a formatted string to print out what the animal says name : str the name of the animal sound : str the sound that the animal makes num_legs : int the number of legs the animal has (default 4) Methods - says(sound=None) Prints the animals name and what sound it makes &quot;&quot;&quot; says_str = &quot;A {name} says {sound}&quot; def __init__(self, name, sound, num_legs=4): &quot;&quot;&quot; Parameters - name : str The name of the animal sound : str The sound the animal makes num_legs : int, optional The number of legs the animal (default is 4) &quot;&quot;&quot; self.name = name self.sound = sound self.num_legs = num_legs def says(self, sound=None): &quot;&quot;&quot;Prints what the animals name is and what sound it makes. If the argument `sound` isn&#39;t passed in, the default Animal sound is used. Parameters - sound : str, optional The sound the animal makes (default is None) Raises NotImplementedError If no sound is set for the animal or passed in as a parameter. &quot;&quot;&quot; if self.sound is None and sound is None: raise NotImplementedError(&quot;Silent Animals are not supported!&quot;) out_sound = self.sound if sound is None else sound print(self.says_str.format(name=self.name, sound=out_sound)) .",
+            "url": "https://szagar.github.io/cv/development/notes/python/style/2022/06/20/notes-python_style.html",
+            "relUrl": "/development/notes/python/style/2022/06/20/notes-python_style.html",
             "date": " • Jun 20, 2022"
         }
         
     
   
     
-        ,"post12": {
-            "title": "AirFlow Notes",
-            "content": "",
-            "url": "https://szagar.github.io/cv/development/notes/airflow/2022/06/20/notes_AirFlow.html",
-            "relUrl": "/development/notes/airflow/2022/06/20/notes_AirFlow.html",
+        ,"post5": {
+            "title": "Pydantic Notes",
+            "content": "&quot;&quot;&quot; Basic example showing how to read and validate data from a file using Pydantic. &quot;&quot;&quot; import json from typing import List, Optional import pydantic class ISBNMissingError(Exception): &quot;&quot;&quot;Custom error that is raised when both ISBN10 and ISBN13 are missing.&quot;&quot;&quot; def __init__(self, title: str, message: str) -&gt; None: self.title = title self.message = message super().__init__(message) class ISBN10FormatError(Exception): &quot;&quot;&quot;Custom error that is raised when ISBN10 doesn&#39;t have the right format.&quot;&quot;&quot; def __init__(self, value: str, message: str) -&gt; None: self.value = value self.message = message super().__init__(message) class Author(pydantic.BaseModel): name: str verified: bool class Book(pydantic.BaseModel): &quot;&quot;&quot;Represents a book with that you can read from a JSON file.&quot;&quot;&quot; title: str author: str publisher: str price: float isbn_10: Optional[str] isbn_13: Optional[str] subtitle: Optional[str] author2: Optional[Author] @pydantic.root_validator(pre=True) @classmethod def check_isbn_10_or_13(cls, values): &quot;&quot;&quot;Make sure there is either an isbn_10 or isbn_13 value defined&quot;&quot;&quot; if &quot;isbn_10&quot; not in values and &quot;isbn_13&quot; not in values: raise ISBNMissingError( title=values[&quot;title&quot;], message=&quot;Document should have either an ISBN10 or ISBN13&quot;, ) return values @pydantic.validator(&quot;isbn_10&quot;) @classmethod def isbn_10_valid(cls, value) -&gt; None: &quot;&quot;&quot;Validator to check whether ISBN10 is valid&quot;&quot;&quot; chars = [c for c in value if c in &quot;0123456789Xx&quot;] if len(chars) != 10: raise ISBN10FormatError(value=value, message=&quot;ISBN10 should be 10 digits.&quot;) def char_to_int(char: str) -&gt; int: if char in &quot;Xx&quot;: return 10 return int(char) if sum((10 - i) * char_to_int(x) for i, x in enumerate(chars)) % 11 != 0: raise ISBN10FormatError( value=value, message=&quot;ISBN10 digit sum should be divisible by 11.&quot; ) return value class Config: &quot;&quot;&quot;Pydantic config class&quot;&quot;&quot; allow_mutation = False anystr_lower = True def main() -&gt; None: &quot;&quot;&quot;Main function.&quot;&quot;&quot; data = json.loads(data_json) books: List[Book] = [Book(**item) for item in data] print(books[0]) print(books[0].dict(exclude={&quot;price&quot;})) print(books[1].copy()) return # Read data from a JSON file with open(&quot;./data.json&quot;) as file: data = json.load(file) books: List[Book] = [Book(**item) for item in data] # print(books) print(books[0]) # print(books[0].dict(exclude={&quot;price&quot;})) # print(books[1].copy()) if __name__ == &quot;__main__&quot;: main() . title=&#39;zero to one&#39; author=&#39;peter thiel&#39; publisher=&#39;ballantine books&#39; price=14.29 isbn_10=&#39;0753555190&#39; isbn_13=&#39;978-0753555194&#39; subtitle=&#39;notes on startups, or how to build the future&#39; author2=Author(name=&#39;Peter Thiel&#39;, verified=True) {&#39;title&#39;: &#39;zero to one&#39;, &#39;author&#39;: &#39;peter thiel&#39;, &#39;publisher&#39;: &#39;ballantine books&#39;, &#39;isbn_10&#39;: &#39;0753555190&#39;, &#39;isbn_13&#39;: &#39;978-0753555194&#39;, &#39;subtitle&#39;: &#39;notes on startups, or how to build the future&#39;, &#39;author2&#39;: {&#39;name&#39;: &#39;Peter Thiel&#39;, &#39;verified&#39;: True}} title=&#39;the lean startup&#39; author=&#39;eric ries&#39; publisher=&#39;penguin uk&#39; price=12.96 isbn_10=&#39;0670921602&#39; isbn_13=&#39;978-0670921607&#39; subtitle=&#39;how relentless change creates radically successful businesses&#39; author2=None . data.json . data_json = &#39;&#39;&#39;[ { &quot;title&quot;: &quot;Zero to One&quot;, &quot;subtitle&quot;: &quot;Notes on Startups, or How to Build the Future&quot;, &quot;author&quot;: &quot;Peter Thiel&quot;, &quot;publisher&quot;: &quot;Ballantine Books&quot;, &quot;isbn_10&quot;: &quot;0753555190&quot;, &quot;isbn_13&quot;: &quot;978-0753555194&quot;, &quot;price&quot;: 14.29, &quot;author2&quot;: { &quot;name&quot;: &quot;Peter Thiel&quot;, &quot;verified&quot;: true } }, { &quot;title&quot;: &quot;The Lean Startup&quot;, &quot;subtitle&quot;: &quot;How Relentless Change Creates Radically Successful Businesses&quot;, &quot;author&quot;: &quot;Eric Ries&quot;, &quot;publisher&quot;: &quot;Penguin UK&quot;, &quot;isbn_10&quot;: &quot;0670921602&quot;, &quot;isbn_13&quot;: &quot;978-0670921607&quot;, &quot;price&quot;: 12.96 }, { &quot;title&quot;: &quot;A Promised Land&quot;, &quot;author&quot;: &quot;Barack Obama&quot;, &quot;publisher&quot;: &quot;Viking UK&quot;, &quot;isbn_10&quot;: &quot;0241491517&quot;, &quot;isbn_13&quot;: &quot;978-0241491515&quot;, &quot;price&quot;: 31.74 }, { &quot;title&quot;: &quot;The Hard Thing about Hard Things&quot;, &quot;subtitle&quot;: &quot;Building a Business When There Are No Easy Answers&quot;, &quot;author&quot;: &quot;Ben Horowitz&quot;, &quot;publisher&quot;: &quot;HarperBusiness&quot;, &quot;isbn_10&quot;: &quot;0062273205&quot;, &quot;isbn_13&quot;: &quot;978-0062273208&quot;, &quot;price&quot;: 15.55 }, { &quot;title&quot;: &quot;Design patterns&quot;, &quot;subtitle&quot;: &quot;Elements of reusable object-oriented software&quot;, &quot;author&quot;: &quot;Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides&quot;, &quot;publisher&quot;: &quot;Addison Wesley&quot;, &quot;isbn_10&quot;: &quot;0201633612&quot;, &quot;isbn_13&quot;: &quot;978-0201633610&quot;, &quot;price&quot;: 50 }, { &quot;title&quot;: &quot;Clean Code&quot;, &quot;subtitle&quot;: &quot;A Handbook of Agile Software Craftsmanship&quot;, &quot;author&quot;: &quot;Robert Martin&quot;, &quot;publisher&quot;: &quot;Financial Times Prentice Hall&quot;, &quot;isbn_10&quot;: &quot;0132350882&quot;, &quot;isbn_13&quot;: &quot;978-0132350884&quot;, &quot;price&quot;: 33.43 } ] &#39;&#39;&#39; . does dataclass support slots? . from dataclasses import dataclass, field, astuple, asdict . @dataclass(frozen=True, order=True) class Comment: id: int text: str = &quot;&quot; replies: list[int] = field(default_factory=list) . use default_factory for mutable defaults replies: list[int] = field(default_factory=List) | . | . attr . has slots | . pydantic .",
+            "url": "https://szagar.github.io/cv/development/notes/python/pydantic/dataclass/2022/06/20/notes-python_pydantic.html",
+            "relUrl": "/development/notes/python/pydantic/dataclass/2022/06/20/notes-python_pydantic.html",
             "date": " • Jun 20, 2022"
         }
         
     
   
     
-        ,"post13": {
+        ,"post6": {
+            "title": "Dataclass Notes",
+            "content": "youtube . Elegant Solutions for Everyday Python | Thinking Outside the GIL with AsyncIO and Multiprocessing | . inspect . from dataclasses import dataclass @dataclass(frozen=True, order=True) class Comment: id: int text: str = &quot;&quot; import inspect import pprint pprint.pprint(inspect.getmembers(Comment, inspect.isfunction)) . [(&#39;__delattr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__delattr__ at 0x109c1ea60&gt;), (&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x109c1e700&gt;), (&#39;__ge__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__ge__ at 0x109c1e940&gt;), (&#39;__gt__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__gt__ at 0x109c1e8b0&gt;), (&#39;__hash__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__hash__ at 0x109c1eaf0&gt;), (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x109c1e670&gt;), (&#39;__le__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__le__ at 0x109c1e820&gt;), (&#39;__lt__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__lt__ at 0x109c1e790&gt;), (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x109c1e5e0&gt;), (&#39;__setattr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__setattr__ at 0x109c1e9d0&gt;)] . import pprint .",
+            "url": "https://szagar.github.io/cv/development/notes/python/dataclass/2022/06/20/notes-python_dataclass.html",
+            "relUrl": "/development/notes/python/dataclass/2022/06/20/notes-python_dataclass.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post7": {
+            "title": "Encoding Notes",
+            "content": "inspect . b&#39;a string&#39;.decode(&#39;ascii&#39;) . &#39;a string&#39; . To get bytes from string, encode it. . &#39;a string&#39;.encode(&#39;ascii&#39;) . b&#39;a string&#39;.decode(&#39;utf-8&#39;) . &#39;a string&#39; . Unicode is international standard 3 of the most popular encoding standards defined by Unicode are UTF-8, UTF-16 and UTF-32. . UTF-8: It uses 1, 2, 3 or 4 bytes to encode every code point. It is backwards compatible with ASCII. All English characters just need 1 byte — which is quite efficient. We only need more bytes if we are sending non-English characters. It is the most popular form of encoding, and is by default the encoding in Python 3. In Python 2, the default encoding is ASCII (unfortunately). . We need encode method to convert unicode code points to bytes. This will happen typically during writing string data to a CSV or JSON file for example. We need decode method to convert bytes to unicode code points. This will typically happen during reading data from a file into strings. . Why are encode and decode methods needed? . What data types in Python handle Unicode code points and bytes? As we discussed earlier, in Python, strings can either be represented in bytes or unicode code points. The main takeaways in Python are: | Python 2 uses str type to store bytes and unicode type to store unicode code points. All strings by default are str type — which is bytes~ And Default encoding is ASCII. So if an incoming file is Cyrillic characters, Python 2 might fail because ASCII will not be able to handle those Cyrillic Characters. In this case, we need to remember to use decode(&quot;utf-8&quot;) during reading of files. This is inconvenient. | Python 3 came and fixed this. Strings are stillstr type by default but they now mean unicode code points instead — we carry what we see. If we want to store these str type strings in files we use bytes type instead. Default encoding is UTF-8 instead of ASCII. Perfect! |",
+            "url": "https://szagar.github.io/cv/development/notes/python/encoding/2022/06/20/notes-python-encoding.html",
+            "relUrl": "/development/notes/python/encoding/2022/06/20/notes-python-encoding.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post8": {
             "title": "pyscript notes",
             "content": "Articles . Real Python - A First Look at PyScript: Python in the Web Browser | .",
             "url": "https://szagar.github.io/cv/development/python/web/pyscript/2022/06/20/notes-pyscript.html",
@@ -155,7 +100,29 @@
     
   
     
-        ,"post14": {
+        ,"post9": {
+            "title": "Options",
+            "content": "",
+            "url": "https://szagar.github.io/cv/development/notes/options/2022/06/20/notes-options.html",
+            "relUrl": "/development/notes/options/2022/06/20/notes-options.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post10": {
+            "title": "Title",
+            "content": "import numpy as np . ModuleNotFoundError Traceback (most recent call last) Input In [1], in &lt;cell line: 1&gt;() -&gt; 1 import numpy as np ModuleNotFoundError: No module named &#39;numpy&#39; . import random rnd = random.Random(1234) for _ in range(10): print(np.random.randint(2,3)) for _ in range(10): print(rnd.randint(2,3)) . 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 3 2 2 . c = np.arange(10) . c.shape = (5,2) c . array([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]) . c=c.T c . array([[0, 2, 4, 6, 8], [1, 3, 5, 7, 9]]) . c.reshape(5,2) . array([[0, 2], [4, 6], [8, 1], [3, 5], [7, 9]]) . c.flatten() . array([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]) . a = np.arange(15).reshape(3, 5) a . array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]]) . v = a[1:3,:] . v . array([[ 5, 6, 99, 8, 9], [10, 11, 12, 13, 14]]) . a . array([[ 0, 1, 2, 3, 4], [ 5, 6, 99, 8, 9], [10, 11, 12, 13, 14]]) . v[0] = 99 . v . array([[99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . v[1] . array([10, 11, 12, 13, 14]) . v[1][1] . 11 . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, 13, 14]]) . m = np.logical_and(a &gt; 12, a &lt; 99) m . array([[False, False, False, False, False], [False, False, False, False, False], [False, False, False, True, True]]) . a &gt; 98 . array([[False, False, False, False, False], [ True, True, True, True, True], [False, False, False, False, False]]) . a[m] = -5 . a . array([[ 0, 1, 2, 3, 4], [99, 99, 99, 99, 99], [10, 11, 12, -5, -5]]) . v . array([[99, 99, 99, 99, 99], [10, 11, 12, -5, -5]]) . b = np.arange(15).reshape(3, 5) . b . array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]]) . b[[0,2],:] . array([[ 0, 1, 2, 3, 4], [10, 11, 12, 13, 14]]) . b[[True,False,True],2:4] . array([[ 2, 3], [12, 13]]) . np.ones(2,str) . array([&#39;1&#39;, &#39;1&#39;], dtype=&#39;&lt;U1&#39;) . cs = np.arange(10) cs . array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) . print(cs.cumsum()) . [ 0 1 3 6 10 15 21 28 36 45] . import pandas as pd . data = {&#39;Name&#39;:[&#39;Tom&#39;,&#39;nick&#39;,&#39;krish&#39;], &#39;Age&#39;:[20,21,19]} df = pd.DataFrame(data) df . Name Age . 0 Tom | 20 | . 1 nick | 21 | . 2 krish | 19 | . df[[&#39;Age&#39;]] . Age . 0 20 | . 1 21 | . 2 19 | . df.iloc[0:2][&#39;Age&#39;] . 0 20 1 21 Name: Age, dtype: int64 . df[0:1][[&#39;Name&#39;,&#39;Age&#39;]] . Name Age . 0 Tom | 20 | .",
+            "url": "https://szagar.github.io/cv/2022/06/20/notes-numpy.html",
+            "relUrl": "/2022/06/20/notes-numpy.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post11": {
             "title": "Markdown notes",
             "content": "Notebook markdown . This adds a linked superscript 15 . 15. This is the actual footnote↩ . This adds a linked superscript 20 . 20. This is the actual footnote; with a link as well! and a single quote &#39; too!↩ .",
             "url": "https://szagar.github.io/cv/markdown/notes/2022/06/20/notes-markdown.html",
@@ -166,7 +133,7 @@
     
   
     
-        ,"post15": {
+        ,"post12": {
             "title": "Setup Notes",
             "content": "TOC . oh my zsh | xterm | . Jupyter . add kernel python -m ipykernel install --user --name=myenv | . jupyter setup . python -m venv cv_env | source cv_env/bin/activate | /Users/szagar/work/blog/cv/cv_env/bin/python -m pip install --upgrade pip | pip install jupyter | pip install ipykernel | python -m ipykernel install --name=cv-venv | . jupyter tools . list jupyter virtual envs: jupyter kernelspec list | remove jupyter virtual envs: jupyter kernelspec uninstall &lt;venv name&gt; | . jekyll notes . convert your notebooks and word documents to .md posts in _posts make convert . | Launch just the jekyll server make server . | . fastpages notes . all available commands : make | run the blog with live preview : make server first time, it&#39;ll build the required Docker images | monitors any changes in ./_notebooks/.ipynb/ and ./_word/.docx;*.doc and rebuild the blog on change | Jekyll server on https://127.0.0.1:4000 | . | run all services in the background : make server-detached | stop the services : make stop | restart just the Jekyll server, already running in the background : restart-jekyll . | troubleshoot: If containers won&#39;t start: try make build first, this would rebuild all the containers from scratch . | more notes . | . nbdev . setup repo via template | clone repo | create venv | add kernel to jupyter | in jupyter terminal: pip install nbdev | edit settings.ini # lib_name = your_project_name # repo_name = name of github repo # user = your_github_username # description = A description of your project # keywords = some keywords # author = Your Name # author_email = email@example.com # copyright = Your Name or Company Name # branch = The default branch of your GitHub repo (usually either master or main) . | install git hooks, from project folder: nbdev_install_git_hooks | start jupyter lab, open 00_core.ipynb | add code, examples, test and markdown headings | Build lib (create the python module): nbdev_build_lib | create your documentation home page and README.md Edit index.ipynb edit import statement | edit install comment | add some examples | . | Build docs nbdev_build_docs | . | notes: . if notebook conflicts appear, run: nbdev_fix_merge filename.ipynb | if using a subdirectory to contain .ipynb files (nbs_path set to be anything other than the project root) either install these modules locally, as their relative import will take you beyond the top-level package, which can be done by running pip install -e . in the project root, to install the modules to your environment in editable mode. | or make a simlink in your notebook folder to the library folder, which can be done by running ln -s lib_path lib_name (adjust lib_path and lib_name to your use case). | . | .",
             "url": "https://szagar.github.io/cv/development/notes/setup/mac/2022/06/20/notes-mac_setup.html",
@@ -177,7 +144,18 @@
     
   
     
-        ,"post16": {
+        ,"post13": {
+            "title": "Git Notes",
+            "content": "diff . dunk | . b&#39;a string&#39;.decode(&#39;utf-8&#39;) . &#39;a string&#39; . Unicode is international standard 3 of the most popular encoding standards defined by Unicode are UTF-8, UTF-16 and UTF-32. . UTF-8: It uses 1, 2, 3 or 4 bytes to encode every code point. It is backwards compatible with ASCII. All English characters just need 1 byte — which is quite efficient. We only need more bytes if we are sending non-English characters. It is the most popular form of encoding, and is by default the encoding in Python 3. In Python 2, the default encoding is ASCII (unfortunately). . We need encode method to convert unicode code points to bytes. This will happen typically during writing string data to a CSV or JSON file for example. We need decode method to convert bytes to unicode code points. This will typically happen during reading data from a file into strings. . Why are encode and decode methods needed? . What data types in Python handle Unicode code points and bytes? As we discussed earlier, in Python, strings can either be represented in bytes or unicode code points. The main takeaways in Python are: | Python 2 uses str type to store bytes and unicode type to store unicode code points. All strings by default are str type — which is bytes~ And Default encoding is ASCII. So if an incoming file is Cyrillic characters, Python 2 might fail because ASCII will not be able to handle those Cyrillic Characters. In this case, we need to remember to use decode(&quot;utf-8&quot;) during reading of files. This is inconvenient. | Python 3 came and fixed this. Strings are stillstr type by default but they now mean unicode code points instead — we carry what we see. If we want to store these str type strings in files we use bytes type instead. Default encoding is UTF-8 instead of ASCII. Perfect! |",
+            "url": "https://szagar.github.io/cv/development/notes/git/2022/06/20/notes-git.html",
+            "relUrl": "/development/notes/git/2022/06/20/notes-git.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post14": {
             "title": "Fastpages notes",
             "content": "Fastpages . fastai forums | fastpages repo | repo README | upgrading guide | . Fastpages, developing locally . Run server locally Pay attention to the emitted logs when you save your notebooks or files. Often, you will see errors here that will give you important clues. | . | When developing locally Jupyter notebooks are converted to markdown files in the _posts folder. Take a look at the problematic blog posts and see if you can spot the offending HTML or markdown in that code. . | Use your browser&#39;s developer tools to see if there are any errors. Common errors are: . not able to find images because they have not been saved into the right folder, | javascript or other errors. | | If you receive a Jekyll build error or a Liquid error, search for this error on Stack Overflow to provide more insight on the problem | . Frequent Errors . Malformed front matter must be valid YAML | escape special chars with double quotes - title: &quot;Deep learning: A tutorial&quot; | YAML tutorial | . | FAQ | . Customize Fastpages . minima theme | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/blog/2022/06/20/notes-fastpages.html",
@@ -188,11 +166,33 @@
     
   
     
-        ,"post17": {
+        ,"post15": {
+            "title": "Docker notes",
+            "content": "Docker Hun . szagr / | . Building images . # Dockerfile FROM ubuntu RUN apt update &amp;&amp; apt install -y cowsay CMD [&quot;/usr/games/cowsay&quot;, &quot;Dockerfiles are cool!&quot;]# Dockerfile FROM python 3.7.5-slim RUN python -m pip install parse realpython-reader REPL . -it needed to run container interactively$ docker run -it --rm python:rc . | . Docker CLI . docker --help | Build an image from Dockerfile . with cowsay tag, usiner Dockerfile in current dir$ docker build -t cowsay . . | . | List images . $ docker images ps -a . | List containers . $ docker docker ps -a . | Run the image . -rm cleans up container afer use$ docker run -rm cowsay . | . | Delete image . $ docker rmi &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; Delete container . $ docker rm &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; . | . | .",
+            "url": "https://szagar.github.io/cv/development/notes/deployment/docker/2022/06/20/notes-docker.html",
+            "relUrl": "/development/notes/deployment/docker/2022/06/20/notes-docker.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post16": {
             "title": "Dev Tools",
             "content": "intra-day-vs-trade-close-to-close-drawdown | . Python dev tools . json to pydantic | . nbdev . github page | install: pip install nbdev | Getting Started tutorial | example | docs | release notes | video | . | Play-by-play setup repo via template note: repo name will be used as Python project name, therefore lowercase w/ underscores | . | clone repo | . | . fastdoc . notebooks -&gt; books .",
             "url": "https://szagar.github.io/cv/development/2022/06/20/notes-dev_tools.html",
             "relUrl": "/development/2022/06/20/notes-dev_tools.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post17": {
+            "title": "Dev Notes",
+            "content": "Articles . strategy performance report | . BTA . BTA Community | BTA Portal | Research: COT Report Analysis.ipynb | . Jekyll . mermaid | .",
+            "url": "https://szagar.github.io/cv/development/notes/2022/06/20/notes-dev.html",
+            "relUrl": "/development/notes/2022/06/20/notes-dev.html",
             "date": " • Jun 20, 2022"
         }
         
@@ -211,6 +211,17 @@
   
     
         ,"post19": {
+            "title": "AirFlow Notes",
+            "content": "",
+            "url": "https://szagar.github.io/cv/development/notes/airflow/2022/06/20/notes-AirFlow.html",
+            "relUrl": "/development/notes/airflow/2022/06/20/notes-AirFlow.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post20": {
             "title": "Markedown notes",
             "content": "Notebook markdown . This adds a linked superscript 15 . 15. This is the actual footnote↩ . This adds a linked superscript 20 . 20. This is the actual footnote; with a link as well! and a single quote &#39; too!↩ .",
             "url": "https://szagar.github.io/cv/markdown/notes/2022/06/20/markedown_notes.html",
@@ -221,7 +232,7 @@
     
   
     
-        ,"post20": {
+        ,"post21": {
             "title": "Fastpages notes",
             "content": "Fastpages . fastai forums | fastpages repo | repo README | upgrading guide | . Fastpages, developing locally . Run server locally Pay attention to the emitted logs when you save your notebooks or files. Often, you will see errors here that will give you important clues. | . | When developing locally Jupyter notebooks are converted to markdown files in the _posts folder. Take a look at the problematic blog posts and see if you can spot the offending HTML or markdown in that code. . | Use your browser&#39;s developer tools to see if there are any errors. Common errors are: . not able to find images because they have not been saved into the right folder, | javascript or other errors. | | If you receive a Jekyll build error or a Liquid error, search for this error on Stack Overflow to provide more insight on the problem | . Frequent Errors . Malformed front matter must be valid YAML | escape special chars with double quotes - title: &quot;Deep learning: A tutorial&quot; | YAML tutorial | . | FAQ | . Customize Fastpages . minima theme | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/2022/06/20/fastpages_notes.html",
@@ -232,7 +243,7 @@
     
   
     
-        ,"post21": {
+        ,"post22": {
             "title": "CSS Notes",
             "content": "Selectors . games ton of fun and interactive games | CSS Diner | . | . Type Selector | ID Selector: # | Descendant Selector: p strong selects all strong elements that are inside of any p | #fancy span selects any span elements that are inside of the element with id=&quot;fancy&quot; | . | Combine the Descendant &amp; ID Selectors #cool span selects all span elements that are inside of elements with id=&quot;cool&quot; | . | Class Selector: . .neato selects all elements with class=&quot;neato&quot; | . | Combine the Class Selector ul.important selects all ul elements that have class=&quot;important&quot; | #big.wide selects all elements with id=&quot;big&quot; that also have class=&quot;wide&quot; | . | Comma Combinator p, .fun selects all p elements as well as all elements with class=&quot;fun&quot; | a, p, div selects all a, p and div elements | . | The Universal Selector: ** *** p * selects any element inside all p elements. | p * selects every element inside all p elements. | ul.fancy * selects every element inside all ul class=&quot;fancy&quot; elements. | . | Adjacent Sibling Selector: ** +** p + .intro selects every element with class=&quot;intro&quot; that directly follows a &lt;p&gt; | div + a selects every &lt;a&gt; element that directly follows a &lt;div&gt; | . | General Sibling Selector: ** ~** A ~ B selects all B that follow a A | . | Child Selector: ** &gt;** A &gt; B selects all B that are a direct children A | . | First Child Pseudo-selector: ** :** :first-child selects all first child elements. | p:first-child selects all first child &lt;p&gt; elements. | div p:first-child selects all first child &lt;p&gt; elements that are in a &lt;div&gt;. | . | .",
             "url": "https://szagar.github.io/cv/development/notes/css/2022/06/20/css_notes.html",
@@ -243,7 +254,7 @@
     
   
     
-        ,"post22": {
+        ,"post23": {
             "title": "CSS Notes",
             "content": "",
             "url": "https://szagar.github.io/cv/development/notes/css/2022/06/20/css_notes-Copy1.html",
@@ -254,23 +265,12 @@
     
   
     
-        ,"post23": {
+        ,"post24": {
             "title": "Markets",
             "content": "BTA . Tomas (7/22): Joe, overall, NQ is not recommended anymore, it is too volatile. ES, YM, EM, QM, RTY are still good markets. Plus all the recent MICROS are great too. | . My stuff . TY has .D, 720-1400 | 24hr, 200-1600, | 120m, 240m | . | US 700-1600, 200-1600 | 80m | protective stop @ 2000 | . | . Easy . JPY | .",
             "url": "https://szagar.github.io/cv/marketes/dnp/2022/06/20/Markets.html",
             "relUrl": "/marketes/dnp/2022/06/20/Markets.html",
             "date": " • Jun 20, 2022"
-        }
-        
-    
-  
-    
-        ,"post24": {
-            "title": "Dev Notes",
-            "content": "Articles . strategy performance report | . BTA . BTA Community | BTA Portal | Research: COT Report Analysis.ipynb | . Jekyll . mermaid | .",
-            "url": "https://szagar.github.io/cv/development/notes/2022/06/02/notes-dev.html",
-            "relUrl": "/development/notes/2022/06/02/notes-dev.html",
-            "date": " • Jun 2, 2022"
         }
         
     
