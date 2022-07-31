@@ -167,6 +167,17 @@
   
     
         ,"post15": {
+            "title": "nbdev notes",
+            "content": "Angela C notes | tutorial | .",
+            "url": "https://szagar.github.io/cv/nbdev/notes/2022/06/20/notes-nbdev.html",
+            "relUrl": "/nbdev/notes/2022/06/20/notes-nbdev.html",
+            "date": " • Jun 20, 2022"
+        }
+        
+    
+  
+    
+        ,"post16": {
             "title": "Markdown notes",
             "content": "Notebook markdown . This adds a linked superscript 15 . 15. This is the actual footnote↩ . This adds a linked superscript 20 . 20. This is the actual footnote; with a link as well! and a single quote &#39; too!↩ .",
             "url": "https://szagar.github.io/cv/markdown/notes/2022/06/20/notes-markdown.html",
@@ -177,7 +188,7 @@
     
   
     
-        ,"post16": {
+        ,"post17": {
             "title": "Git Notes",
             "content": "diff . dunk | . b&#39;a string&#39;.decode(&#39;utf-8&#39;) . &#39;a string&#39; . Unicode is international standard 3 of the most popular encoding standards defined by Unicode are UTF-8, UTF-16 and UTF-32. . UTF-8: It uses 1, 2, 3 or 4 bytes to encode every code point. It is backwards compatible with ASCII. All English characters just need 1 byte — which is quite efficient. We only need more bytes if we are sending non-English characters. It is the most popular form of encoding, and is by default the encoding in Python 3. In Python 2, the default encoding is ASCII (unfortunately). . We need encode method to convert unicode code points to bytes. This will happen typically during writing string data to a CSV or JSON file for example. We need decode method to convert bytes to unicode code points. This will typically happen during reading data from a file into strings. . Why are encode and decode methods needed? . What data types in Python handle Unicode code points and bytes? As we discussed earlier, in Python, strings can either be represented in bytes or unicode code points. The main takeaways in Python are: | Python 2 uses str type to store bytes and unicode type to store unicode code points. All strings by default are str type — which is bytes~ And Default encoding is ASCII. So if an incoming file is Cyrillic characters, Python 2 might fail because ASCII will not be able to handle those Cyrillic Characters. In this case, we need to remember to use decode(&quot;utf-8&quot;) during reading of files. This is inconvenient. | Python 3 came and fixed this. Strings are stillstr type by default but they now mean unicode code points instead — we carry what we see. If we want to store these str type strings in files we use bytes type instead. Default encoding is UTF-8 instead of ASCII. Perfect! |",
             "url": "https://szagar.github.io/cv/development/notes/git/2022/06/20/notes-git.html",
@@ -188,7 +199,7 @@
     
   
     
-        ,"post17": {
+        ,"post18": {
             "title": "Fastpages notes",
             "content": "Fastpages . fastai forums | fastpages repo | repo README | upgrading guide | . Fastpages, developing locally . Run server locally Pay attention to the emitted logs when you save your notebooks or files. Often, you will see errors here that will give you important clues. | . | When developing locally Jupyter notebooks are converted to markdown files in the _posts folder. Take a look at the problematic blog posts and see if you can spot the offending HTML or markdown in that code. . | Use your browser&#39;s developer tools to see if there are any errors. Common errors are: . not able to find images because they have not been saved into the right folder, | javascript or other errors. | | If you receive a Jekyll build error or a Liquid error, search for this error on Stack Overflow to provide more insight on the problem | . Frequent Errors . Malformed front matter must be valid YAML | escape special chars with double quotes - title: &quot;Deep learning: A tutorial&quot; | YAML tutorial | . | FAQ | . Customize Fastpages . minima theme | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/blog/2022/06/20/notes-fastpages.html",
@@ -199,7 +210,7 @@
     
   
     
-        ,"post18": {
+        ,"post19": {
             "title": "Docker notes",
             "content": "Docker Hun . szagr / | . Building images . # Dockerfile FROM ubuntu RUN apt update &amp;&amp; apt install -y cowsay CMD [&quot;/usr/games/cowsay&quot;, &quot;Dockerfiles are cool!&quot;]# Dockerfile FROM python 3.7.5-slim RUN python -m pip install parse realpython-reader REPL . -it needed to run container interactively$ docker run -it --rm python:rc . | . Docker CLI . docker --help | Build an image from Dockerfile . with cowsay tag, usiner Dockerfile in current dir$ docker build -t cowsay . . | . | List images . $ docker images ps -a . | List containers . $ docker docker ps -a . | Run the image . -rm cleans up container afer use$ docker run -rm cowsay . | . | Delete image . $ docker rmi &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; Delete container . $ docker rm &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; . | . | .",
             "url": "https://szagar.github.io/cv/development/notes/deployment/docker/2022/06/20/notes-docker.html",
@@ -210,7 +221,7 @@
     
   
     
-        ,"post19": {
+        ,"post20": {
             "title": "Dev Tools",
             "content": "intra-day-vs-trade-close-to-close-drawdown | . Python dev tools . json to pydantic | . nbdev . github page | install: pip install nbdev | Getting Started tutorial | example | docs | release notes | video | . | Play-by-play setup repo via template note: repo name will be used as Python project name, therefore lowercase w/ underscores | . | clone repo | . | . fastdoc . notebooks -&gt; books .",
             "url": "https://szagar.github.io/cv/development/2022/06/20/notes-dev_tools.html",
@@ -221,7 +232,7 @@
     
   
     
-        ,"post20": {
+        ,"post21": {
             "title": "Dev Notes",
             "content": "Articles . strategy performance report | . BTA . BTA Community | BTA Portal | Research: COT Report Analysis.ipynb | . Jekyll . mermaid | .",
             "url": "https://szagar.github.io/cv/development/notes/2022/06/20/notes-dev.html",
@@ -232,7 +243,7 @@
     
   
     
-        ,"post21": {
+        ,"post22": {
             "title": "CSS Notes",
             "content": "Selectors . games ton of fun and interactive games | CSS Diner | . | . Type Selector | ID Selector: # | Descendant Selector: p strong selects all strong elements that are inside of any p | #fancy span selects any span elements that are inside of the element with id=&quot;fancy&quot; | . | Combine the Descendant &amp; ID Selectors #cool span selects all span elements that are inside of elements with id=&quot;cool&quot; | . | Class Selector: . .neato selects all elements with class=&quot;neato&quot; | . | Combine the Class Selector ul.important selects all ul elements that have class=&quot;important&quot; | #big.wide selects all elements with id=&quot;big&quot; that also have class=&quot;wide&quot; | . | Comma Combinator p, .fun selects all p elements as well as all elements with class=&quot;fun&quot; | a, p, div selects all a, p and div elements | . | The Universal Selector: ** *** p * selects any element inside all p elements. | p * selects every element inside all p elements. | ul.fancy * selects every element inside all ul class=&quot;fancy&quot; elements. | . | Adjacent Sibling Selector: ** +** p + .intro selects every element with class=&quot;intro&quot; that directly follows a &lt;p&gt; | div + a selects every &lt;a&gt; element that directly follows a &lt;div&gt; | . | General Sibling Selector: ** ~** A ~ B selects all B that follow a A | . | Child Selector: ** &gt;** A &gt; B selects all B that are a direct children A | . | First Child Pseudo-selector: ** :** :first-child selects all first child elements. | p:first-child selects all first child &lt;p&gt; elements. | div p:first-child selects all first child &lt;p&gt; elements that are in a &lt;div&gt;. | . | .",
             "url": "https://szagar.github.io/cv/development/notes/css/2022/06/20/notes-css.html",
@@ -243,7 +254,7 @@
     
   
     
-        ,"post22": {
+        ,"post23": {
             "title": "AirFlow Notes",
             "content": "",
             "url": "https://szagar.github.io/cv/development/notes/airflow/2022/06/20/notes-AirFlow.html",
@@ -254,7 +265,7 @@
     
   
     
-        ,"post23": {
+        ,"post24": {
             "title": "Markedown notes",
             "content": "Notebook markdown . This adds a linked superscript 15 . 15. This is the actual footnote↩ . This adds a linked superscript 20 . 20. This is the actual footnote; with a link as well! and a single quote &#39; too!↩ .",
             "url": "https://szagar.github.io/cv/markdown/notes/2022/06/20/markedown_notes.html",
@@ -265,7 +276,7 @@
     
   
     
-        ,"post24": {
+        ,"post25": {
             "title": "Fastpages notes",
             "content": "Fastpages . fastai forums | fastpages repo | repo README | upgrading guide | . Fastpages, developing locally . Run server locally Pay attention to the emitted logs when you save your notebooks or files. Often, you will see errors here that will give you important clues. | . | When developing locally Jupyter notebooks are converted to markdown files in the _posts folder. Take a look at the problematic blog posts and see if you can spot the offending HTML or markdown in that code. . | Use your browser&#39;s developer tools to see if there are any errors. Common errors are: . not able to find images because they have not been saved into the right folder, | javascript or other errors. | | If you receive a Jekyll build error or a Liquid error, search for this error on Stack Overflow to provide more insight on the problem | . Frequent Errors . Malformed front matter must be valid YAML | escape special chars with double quotes - title: &quot;Deep learning: A tutorial&quot; | YAML tutorial | . | FAQ | . Customize Fastpages . minima theme | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/2022/06/20/fastpages_notes.html",
@@ -276,7 +287,7 @@
     
   
     
-        ,"post25": {
+        ,"post26": {
             "title": "CSS Notes",
             "content": "Selectors . games ton of fun and interactive games | CSS Diner | . | . Type Selector | ID Selector: # | Descendant Selector: p strong selects all strong elements that are inside of any p | #fancy span selects any span elements that are inside of the element with id=&quot;fancy&quot; | . | Combine the Descendant &amp; ID Selectors #cool span selects all span elements that are inside of elements with id=&quot;cool&quot; | . | Class Selector: . .neato selects all elements with class=&quot;neato&quot; | . | Combine the Class Selector ul.important selects all ul elements that have class=&quot;important&quot; | #big.wide selects all elements with id=&quot;big&quot; that also have class=&quot;wide&quot; | . | Comma Combinator p, .fun selects all p elements as well as all elements with class=&quot;fun&quot; | a, p, div selects all a, p and div elements | . | The Universal Selector: ** *** p * selects any element inside all p elements. | p * selects every element inside all p elements. | ul.fancy * selects every element inside all ul class=&quot;fancy&quot; elements. | . | Adjacent Sibling Selector: ** +** p + .intro selects every element with class=&quot;intro&quot; that directly follows a &lt;p&gt; | div + a selects every &lt;a&gt; element that directly follows a &lt;div&gt; | . | General Sibling Selector: ** ~** A ~ B selects all B that follow a A | . | Child Selector: ** &gt;** A &gt; B selects all B that are a direct children A | . | First Child Pseudo-selector: ** :** :first-child selects all first child elements. | p:first-child selects all first child &lt;p&gt; elements. | div p:first-child selects all first child &lt;p&gt; elements that are in a &lt;div&gt;. | . | .",
             "url": "https://szagar.github.io/cv/development/notes/css/2022/06/20/css_notes.html",
@@ -287,7 +298,7 @@
     
   
     
-        ,"post26": {
+        ,"post27": {
             "title": "CSS Notes",
             "content": "",
             "url": "https://szagar.github.io/cv/development/notes/css/2022/06/20/css_notes-Copy1.html",
@@ -298,7 +309,7 @@
     
   
     
-        ,"post27": {
+        ,"post28": {
             "title": "Markets",
             "content": "BTA . Tomas (7/22): Joe, overall, NQ is not recommended anymore, it is too volatile. ES, YM, EM, QM, RTY are still good markets. Plus all the recent MICROS are great too. | . My stuff . TY has .D, 720-1400 | 24hr, 200-1600, | 120m, 240m | . | US 700-1600, 200-1600 | 80m | protective stop @ 2000 | . | . Easy . JPY | .",
             "url": "https://szagar.github.io/cv/marketes/dnp/2022/06/20/Markets.html",
@@ -309,7 +320,7 @@
     
   
     
-        ,"post28": {
+        ,"post29": {
             "title": "Dev Notes",
             "content": "Articles . strategy performance report | . BTA . BTA Community | BTA Portal | Research: COT Report Analysis.ipynb | . Jekyll . mermaid | .",
             "url": "https://szagar.github.io/cv/development/notes/2022/06/02/dev_notes.html",
@@ -320,7 +331,7 @@
     
   
     
-        ,"post29": {
+        ,"post30": {
             "title": "ToDo",
             "content": "zts framwork . [x] time segments | [ ] add strategies to Striker | [ ] minute bars db | [ ] mae/mfe w/ minute bars db | [ ] python monte carlo | [ ] run dnp with short re-optimization periods | [ ] dnp on mongodb | . house . [x] basement stairs | [x] sprinklers | [ ] basement storage area | [ ] organize garage | [ ] organize work area | [ ] backyard spigot | [ ] pond waterfall | [ ] pond filter | .",
             "url": "https://szagar.github.io/cv/notes/2022/06/02/ToDo.html",
@@ -331,7 +342,7 @@
     
   
     
-        ,"post30": {
+        ,"post31": {
             "title": "Pandas Troubleshooting",
             "content": "*dtype warning .",
             "url": "https://szagar.github.io/cv/pandas/python/2022/05/31/troubleshooting_pandas.html",
@@ -342,7 +353,7 @@
     
   
     
-        ,"post31": {
+        ,"post32": {
             "title": "Dev Tools",
             "content": "intra-day-vs-trade-close-to-close-drawdown | . Python dev tools . json to pydantic | . nbdev . github page | install: pip install nbdev | Getting Started tutorial | example | docs | release notes | video | . | Play-by-play setup repo via template note: repo name will be used as Python project name, therefore lowercase w/ underscores | . | clone repo | . | . fastdoc . notebooks -&gt; books .",
             "url": "https://szagar.github.io/cv/development/2022/05/31/dev_tools.html",
@@ -353,7 +364,7 @@
     
   
     
-        ,"post32": {
+        ,"post33": {
             "title": "Markets",
             "content": "My stuff . TY has .D, 720-1400 | 24hr, 200-1600, | 120m, 240m | . | US 700-1600, 200-1600 | 80m | protective stop @ 2000 | . | . Easy . JPY | .",
             "url": "https://szagar.github.io/cv/marketes/dnp/2022/05/31/Markets.html",
@@ -366,7 +377,7 @@
     
   
     
-        ,"post34": {
+        ,"post35": {
             "title": "Using plotly.express",
             "content": "import plotly.express as px . fig = px.bar(x=[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], y=[1, 3, 2]) fig.show() . df . date GOOG AAPL AMZN FB NFLX MSFT . 0 2018-01-01 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | . 1 2018-01-08 | 1.018172 | 1.011943 | 1.061881 | 0.959968 | 1.053526 | 1.015988 | . 2 2018-01-15 | 1.032008 | 1.019771 | 1.053240 | 0.970243 | 1.049860 | 1.020524 | . 3 2018-01-22 | 1.066783 | 0.980057 | 1.140676 | 1.016858 | 1.307681 | 1.066561 | . 4 2018-01-29 | 1.008773 | 0.917143 | 1.163374 | 1.018357 | 1.273537 | 1.040708 | . ... ... | ... | ... | ... | ... | ... | ... | . 100 2019-12-02 | 1.216280 | 1.546914 | 1.425061 | 1.075997 | 1.463641 | 1.720717 | . 101 2019-12-09 | 1.222821 | 1.572286 | 1.432660 | 1.038855 | 1.421496 | 1.752239 | . 102 2019-12-16 | 1.224418 | 1.596800 | 1.453455 | 1.104094 | 1.604362 | 1.784896 | . 103 2019-12-23 | 1.226504 | 1.656000 | 1.521226 | 1.113728 | 1.567170 | 1.802472 | . 104 2019-12-30 | 1.213014 | 1.678000 | 1.503360 | 1.098475 | 1.540883 | 1.788185 | . 105 rows × 7 columns . import plotly.express as px df = px.data.stocks() fig = px.line(df, x=&#39;date&#39;, y=&quot;GOOG&quot;) #fig.add_trace(go.Scatter(mode=&quot;markers&quot;, x=df[&quot;date&quot;], y=df[&quot;AAPL&quot;], name=&quot;AAPL&quot;)) fig.show() . import plotly.graph_objects as go import pandas as pd df = pd.read_csv(&#39;https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv&#39;) fig = go.Figure([go.Scatter(x=df[&#39;Date&#39;], y=df[&#39;AAPL.High&#39;])]) fig.show() . import plotly.express as px df = px.data.stocks(indexed=True)-1 fig = px.bar(df, x=df.index, y=&quot;GOOG&quot;) fig.show() . import plotly.express as px df = px.data.stocks(indexed=True)-1 fig = px.area(df, facet_col=&quot;company&quot;, facet_col_wrap=2) fig.show() . df . company GOOG AAPL AMZN FB NFLX MSFT . date . 2018-01-01 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | . 2018-01-08 0.018172 | 0.011943 | 0.061881 | -0.040032 | 0.053526 | 0.015988 | . 2018-01-15 0.032008 | 0.019771 | 0.053240 | -0.029757 | 0.049860 | 0.020524 | . 2018-01-22 0.066783 | -0.019943 | 0.140676 | 0.016858 | 0.307681 | 0.066561 | . 2018-01-29 0.008773 | -0.082857 | 0.163374 | 0.018357 | 0.273537 | 0.040708 | . ... ... | ... | ... | ... | ... | ... | . 2019-12-02 0.216280 | 0.546914 | 0.425061 | 0.075997 | 0.463641 | 0.720717 | . 2019-12-09 0.222821 | 0.572286 | 0.432660 | 0.038855 | 0.421496 | 0.752239 | . 2019-12-16 0.224418 | 0.596800 | 0.453455 | 0.104094 | 0.604362 | 0.784896 | . 2019-12-23 0.226504 | 0.656000 | 0.521226 | 0.113728 | 0.567170 | 0.802472 | . 2019-12-30 0.213014 | 0.678000 | 0.503360 | 0.098475 | 0.540883 | 0.788185 | . 105 rows × 6 columns . import plotly.express as px df = px.data.stocks() fig = px.line(df, x=&quot;date&quot;, y=df.columns, hover_data={&quot;date&quot;: &quot;|%B %d, %Y&quot;}, title=&#39;custom tick labels&#39;) fig.update_xaxes( dtick=&quot;M1&quot;, tickformat=&quot;%b n%Y&quot;) fig.show() . import sys sys.executable . Dash . import plotly.graph_objects as go # or plotly.express as px fig = go.Figure() # or any Plotly Express function e.g. px.bar(...) # fig.add_trace( ... ) # fig.update_layout( ... ) import dash import dash_core_components as dcc #import dash_html_components as html from dash import html app = dash.Dash() app.layout = html.Div([ dcc.Graph(figure=fig) ]) #app.run_server(debug=True, use_reloader=False) # Turn off reloader if inside Jupyter app.run_server(debug=True, use_reloader=False) # Turn off reloader if inside Jupyter .",
             "url": "https://szagar.github.io/cv/2022/05/12/plotly_examples.html",
@@ -377,7 +388,7 @@
     
   
     
-        ,"post35": {
+        ,"post36": {
             "title": "Interview Preparation",
             "content": "Dynamic Programming . leetcode | AlgoExpert | Dynamic Programming - Learn to Solve Algorithmic Problems &amp; Coding Challenges | inverting a binary key | reverse linked list | suffix tree | min/max heap | merge sort | . DP notes . 2 types: memoirization &amp; tabulation | example:&gt; Minimum Steps to Minimize n to 1 Given an integer n, return the minimum steps to minimize n to 1 . | . Avaliable steps are:- Decrement n by 1- if n is divisible by 2, then divide n by 2 . if n is divisible by 3, then divide n by e | . Examples: . 10 =&gt; 3 steps (10 =&gt; 9 =&gt; 3 =&gt; 1) | 15 =&gt; 4 steps (15 =&gt; 5 =&gt; 4 =&gt; 2 =&gt; 1) | . 6 - 5 - 4 - 3 - 2 - 1 - 1 - 1 #@lru_cache def f(n: int, memo: dict) -&gt; int: #print(f&quot;f({n})&quot;) if n == 1: return 0 if n in memo: return memo[n] if n in (3,2): return 1 nsteps = f(n-1, memo) if n%3 == 0: nsteps = min(nsteps, f(n//3, memo)) if n%2 == 0: nsteps = min(nsteps, f(n//2, memo)) #print(nsteps) memo[n] = nsteps + 1 return memo[n] print(f(1000, {})) . 9 . def f(n: int, memo: list[int]) -&gt; int: if n == 1: return 0 if memo[n]: return memo[n] if n in (3,2): return 1 nsteps = f(n-1, memo) if n%3 == 0: nsteps = min(nsteps, f(n//3, memo)) if n%2 == 0: nsteps = min(nsteps, f(n//2, memo)) #print(nsteps) memo[n] = nsteps + 1 return memo[n] n = 10 memo = [None] * (n+1) print(f(n, memo)) . 3 . via tabulation . def f(n: int) -&gt; int: tbl = [n] * (n+1) tbl[1] = 0 print(tbl) for tbl_idx in range(1,n): print(f&quot;tbl_idx={tbl_idx}&quot;) tbl[tbl_idx+1] = min(tbl[tbl_idx+1], tbl[tbl_idx] + 1) if tbl_idx*2 &lt;= n and tbl[tbl_idx*2]%2 == 0: tbl[tbl_idx*2] = min(tbl[tbl_idx*2], tbl[tbl_idx] + 1) if tbl_idx*3 &lt;= n and tbl[tbl_idx*3]%3 == 0: tbl[tbl_idx*3] = min(tbl[tbl_idx*3], tbl[tbl_idx] + 1) print(tbl) return tbl[n] print( f(6) ) . [6, 0, 6, 6, 6, 6, 6] . tbl_idx=1 . [6, 0, 1, 1, 6, 6, 6] . tbl_idx=2 . [6, 0, 1, 1, 2, 6, 2] . tbl_idx=3 . [6, 0, 1, 1, 2, 6, 2] . tbl_idx=4 . [6, 0, 1, 1, 2, 3, 2] . tbl_idx=5 . [6, 0, 1, 1, 2, 3, 2] . 2 . Initialize array . ar = [[r*c for c in range(1,5)] for r in range(1,3)] . ar . [[1, 2, 3, 4], [2, 4, 6, 8]] . Target Sum (tabulation) . def target_sum(tgt: int, arr: list[int]) -&gt; bool: sums = [False] * (tgt+1) sums[0] = True for s in range(len(sums)): if not sums[s]: continue for value in arr: new_sum = s+value #if new_sum == tgt: # return True if new_sum &gt; tgt: continue sums[new_sum] = True print(sums) return sums[tgt] print(target_sum(7, [5,3,4])) . [True, False, False, False, False, True, False, False] [True, False, False, True, False, True, False, False] [True, False, False, True, True, True, False, False] [True, False, False, True, True, True, True, False] [True, False, False, True, True, True, True, True] [True, False, False, True, True, True, True, True] True . how_sum (tabulation) . how_sum(target_sum, numbers) | return an array containing any combination of elements taht add up to target_sum | if there is no combination that adds to target_sum, then return null | if there are multiple combinations, return any single combo | how_sum(7, [5, 3, 4]) -&gt; [4, 3] | . from rich import print def how_sum(target_sum: int, numbers: list[int]) -&gt; list[int]: #sums = defaultdict(list) sums = {_: [] for _ in range(target_sum+1)} #sums = {_: None for _ in range(target_sum+1)} sums[0] = [[]] for sum in sums.keys(): if not sums[sum]: continue for number in numbers: new_sum = number+sum if new_sum &gt; target_sum: continue for prev_sum in sums[sum]: if prev_sum is None: continue params = prev_sum.copy() params.append(number) sums[new_sum].append(params) break #print(sums) return sums[target_sum][0] if sums[target_sum] else None . print(how_sum(121, [5,4,3])) . [3, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] . best_sum (tabulation) . best_sum(target_sum, numbers) -&gt; list[int] | returns array containing shortest combonation of numbers that sum to target_sum | if there&#39;s a tie, return either | . def best_sum(target_sum: int, numbers: list[int]) -&gt; list[int]: #sums = {_: [] for _ in range(target_sum+1)} sums = {_: None for _ in range(target_sum+1)} sums[0] = [] for sum in sums.keys(): if sums[sum] is None: continue for number in numbers: new_sum = number+sum if new_sum &gt; target_sum: continue #prev_sum = sums[sum] # if prev_sum is None: continue params = sums[sum].copy() params.append(number) if not sums[new_sum] or len(params) &lt; len(sums[new_sum]): sums[new_sum] = params #print(sums) return sums[target_sum] if sums[target_sum] else None . rslt = best_sum(1000, [5,4,6,7,8,9,10,14,17,23]) print(len(rslt),rslt) . 44 [ 17, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23 ] . can_construnct (tabulation) . can_construct(target: str, word_bank: list[str]) -&gt; bool: | return true if target can be constructed from strings in word_bank | may reuse elements | can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;]) --&gt; True | . def can_construct(target: str, word_bank: list[str]) -&gt; bool: # 0 1 2 3 4 5 # a b c d e # ^ tbl = [False] * (len(target)+1) tbl[0] = True for tbl_idx in range(len(target)+1): if not tbl[tbl_idx]: print(&quot;skip&quot;) continue for w in word_bank: n = len(w) print(f&quot;slice: {target[tbl_idx:tbl_idx+n]} n={n} w={w}&quot;) if target[tbl_idx:tbl_idx+n] == w: tbl[tbl_idx+n] = True print(tbl) if tbl[-1]: return True return False rslt = can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;]) rslt . slice: ab n=2 w=ab . [True, False, True, False, False, False, False] . slice: abc n=3 w=abc . [True, False, True, True, False, False, False] . slice: ab n=2 w=cd . slice: abc n=3 w=def . slice: abcd n=4 w=abcd . [True, False, True, True, True, False, False] . skip . slice: cd n=2 w=ab . slice: cde n=3 w=abc . slice: cd n=2 w=cd . [True, False, True, True, True, False, False] . slice: cde n=3 w=def . slice: cdef n=4 w=abcd . slice: de n=2 w=ab . slice: def n=3 w=abc . slice: de n=2 w=cd . slice: def n=3 w=def . [True, False, True, True, True, False, True] . True . can_construnct w/ count (tabulation) . can_construct(target: str, word_bank: list[str]) -&gt; int: | return number of ways target can be constructed from strings in word_bank | may reuse elements | can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;]) --&gt; n | . def can_construct(target: str, word_bank: list[str]) -&gt; int: # a b c d e f _ len = 6 # 0 1 2 3 4 5 6 # ^ &quot;&quot; # ^ &quot;a&quot; # ^ &quot;abcdef&quot; # 1 0 0 0 0 0 # 1 0 1 0 0 0 &quot;ab&quot; = curr + prev # 1 0 1 0 1 0 &quot;cd&quot; # 1 0 1 0 2 0 &quot;abcd&quot; tbl = [False] * (len(target)+1) tbl = [0] * (len(target)+1) tbl[0] = 1 for tbl_idx in range(len(target)+1): if tbl[tbl_idx] == 0: continue for wd in word_bank: wd_len = len(wd) if target[tbl_idx:tbl_idx+wd_len] == wd: tbl[tbl_idx+wd_len] += tbl[tbl_idx] #if tbl_idx == 0: tbl[tbl_idx+wd_len] -= 1 #print(tbl) return tbl[-1] rslt = can_construct(&#39;purple&#39;, [&#39;purp&#39;, &#39;p&#39;, &#39;ur&#39;, &#39;le&#39;, &#39;purpl&#39;]) print(rslt) assert rslt == 2 rslt = can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;]) print(rslt) assert rslt == 1 rslt = can_construct(&#39;skateboard&#39;, [&#39;bo&#39;, &#39;rd&#39;, &#39;ate&#39;, &#39;t&#39;, &#39;ska&#39;, &#39;sk&#39;, &#39;boar&#39;]) print(rslt) assert rslt == 0 rslt = can_construct(&#39;enterapotentpot&#39;, [&#39;a&#39;, &#39;p&#39;, &#39;ent&#39;, &#39;enter&#39;, &#39;ot&#39;, &#39;o&#39;, &#39;t&#39;]) print(rslt) assert rslt == 4 . 2 . 1 . 0 . 4 . can_construnct w/ details (tabulation) . can_construct(target: str, word_bank: list[str]) -&gt; list[str]: | return combinations of words target can be constructed from strings in word_bank | may reuse elements | can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;]) --&gt; [[&#39;ab&#39;,&#39;cd&#39;,&#39;def&#39;],[&#39;abc&#39;,&#39;def&#39;], ...] | . notes . initialize: tbl = [[] for in range(len(target)+1)]tbl = [[] for in range(len(target)+1)] | append does not return list | . from rich import print def can_construct(target: str, word_bank: list[str]) -&gt; list[str]: tbl = [[] for _ in range(len(target)+1)] tbl[0] = [[]] for tbl_idx in range(len(target)+1): if not len(tbl[tbl_idx]): continue for wd in word_bank: wd_len = len(wd) if target[tbl_idx:tbl_idx+wd_len] == wd: for base_arr in tbl[tbl_idx]: tbl[tbl_idx+wd_len].append(base_arr.copy()) tbl[tbl_idx+wd_len][-1].append(wd) return tbl[-1] rslt = can_construct(&#39;abcdef&#39;, [&#39;ab&#39;, &#39;abc&#39;, &#39;cd&#39;, &#39;def&#39;, &#39;abcd&#39;, &#39;ef&#39;, &#39;c&#39;]) print(rslt) . [[&#39;abc&#39;, &#39;def&#39;], [&#39;ab&#39;, &#39;c&#39;, &#39;def&#39;], [&#39;abcd&#39;, &#39;ef&#39;], [&#39;ab&#39;, &#39;cd&#39;, &#39;ef&#39;]] . rslt = can_construct(&#39;enterapotentpot&#39;, [&#39;a&#39;, &#39;p&#39;, &#39;ent&#39;, &#39;enter&#39;, &#39;ot&#39;, &#39;o&#39;, &#39;t&#39;]) rslt . [[&#39;enter&#39;, &#39;a&#39;, &#39;p&#39;, &#39;ot&#39;, &#39;ent&#39;, &#39;p&#39;, &#39;ot&#39;], [&#39;enter&#39;, &#39;a&#39;, &#39;p&#39;, &#39;o&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;p&#39;, &#39;ot&#39;], [&#39;enter&#39;, &#39;a&#39;, &#39;p&#39;, &#39;ot&#39;, &#39;ent&#39;, &#39;p&#39;, &#39;o&#39;, &#39;t&#39;], [&#39;enter&#39;, &#39;a&#39;, &#39;p&#39;, &#39;o&#39;, &#39;t&#39;, &#39;ent&#39;, &#39;p&#39;, &#39;o&#39;, &#39;t&#39;]] . rslt = can_construct(&#39;&#39;, [&#39;a&#39;, &#39;p&#39;, &#39;ent&#39;, &#39;enter&#39;, &#39;ot&#39;, &#39;o&#39;, &#39;t&#39;]) rslt . [[]] . rslt = can_construct(&#39;XX&#39;, [&#39;a&#39;, &#39;p&#39;, &#39;ent&#39;, &#39;enter&#39;, &#39;ot&#39;, &#39;o&#39;, &#39;t&#39;]) rslt . [] .",
             "url": "https://szagar.github.io/cv/job/interview/notes/2022/01/02/interview_prep.html",
@@ -388,7 +399,7 @@
     
   
     
-        ,"post36": {
+        ,"post37": {
             "title": "OOP Notes",
             "content": "OOP was developed to increase the reusability and maintainability of source code. . ArjanCodes OOP tips . You can combine FP with OOP | Make classes either Behavior Oriented or Data Oriented | Be careful with inheritance | Use dependency injection / dependcy inversion | Don&#39;t abuse Python&#39;s power features | Terms . polymorphism is the provision of a single interface to entities of different types | . Variables . Class variables – belong to the class as a whole; there is only one copy of each one | Instance variables or attributes – data that belongs to individual objects; every object has its own copy of each one | Member variables – refers to both the class and instance variables that are defined by a particular class | . Methods . Class methods – belong to the class as a whole and have access to only class variables and inputs from the procedure call | Instance methods – belong to individual objects, and have access to instance variables for the specific object they are called on, inputs, and class variables | . class-based programming . prototype-based . objects are the primary entities. No classes even exist. | . Data Abstraction . Encapsulation . Composition, inheritance, and delegation . Polymorphism . Open recursion . design patterns . can be used to refer to any general, repeatable, solution pattern to a commonly occurring problem in software design. Some of these commonly occurring problems have implications and solutions particular to object-oriented development . Creational patterns (5): Factory method pattern, Abstract factory pattern, Singleton pattern, Builder pattern, Prototype pattern | Structural patterns (7): Adapter pattern, Bridge pattern, Composite pattern, Decorator pattern, Facade pattern, Flyweight pattern, Proxy pattern | Behavioral patterns (11): Chain-of-responsibility pattern, Command pattern, Interpreter pattern, Iterator pattern, Mediator pattern, Memento pattern, Observer pattern, State pattern, Strategy pattern, Template method pattern, Visitor pattern | . SOLID is a mnemonic invented by Michael Feathers which spells out five software engineering design principles: . Single responsibility principle | Open/closed principle | Liskov substitution principle | Interface segregation principle | Dependency inversion principle | . Coupling refers to the interdependencies between modules. cohesion describes how related the functions within a single module are. Low cohesion implies that a given module performs tasks which are not very related to each other and hence can create problems as the module becomes large. . Low coupling often correlates with high cohesion, and vice versa. Low coupling is often thought to be a sign of a well-structured computer system and a good design, and when combined with high cohesion, supports the general goals of high readability and maintainability. . Disadvantages of tight coupling Tightly coupled systems tend to exhibit the following developmental characteristics, which are often seen as disadvantages:1. A change in one module usually forces a ripple effect of changes in other modules.1. Assembly of modules might require more effort and/or time due to the increased inter-module dependency. . A particular module might be harder to reuse and/or test because dependent modules must be included. | Low cohesion is associated with undesirable traits such as being difficult to maintain, test, reuse, or even understand. . Other . Protocol . class Payment(Protocol):&gt; def pay(self, amount: int) -&gt; None:&gt; ... . class PaypalPayment(Payment):def pay(self, amount: int) -&gt; None: print(f&quot;Paying {amount} using PayPal&quot;) . class StripePayment(Payment): def pay(self, amount: int) =&gt; None: print(f&quot;Paying {amount} using Stripe&quot;) . PAYMENT_METHODS: dict{PaymentMethod, type[Payment]] = { PaymentMethod.CARD: StipePayment, PaymentMethod.PAYPAL: PaypalPayment, } . def main(): my_payment = PAYMENT_METHODS[PaymentMethod.PAYPAL()) my_payment.pay(100) .",
             "url": "https://szagar.github.io/cv/interview/oop/notes/2022/01/02/interview_oop.html",
@@ -399,7 +410,7 @@
     
   
     
-        ,"post37": {
+        ,"post38": {
             "title": "Interview - Kangaroo Words",
             "content": "def is_kang_word(word,kang) -&gt; bool: word = word.upper() kang = kang.upper() if len(word) == len(kang): return False k_ptr = w_ptr = 0 while True: if kang[k_ptr] == word[w_ptr]: k_ptr += 1 w_ptr += 1 if k_ptr == len(kang): return True if w_ptr == len(word): break return False . import re def is_kang_word(word,kang) -&gt; bool: if len(word) == len(kang): return False return re.match(f&quot;.*{&#39;.*&#39;.join(kang)}.*&quot;,word) . import re def is_kang_word(word,kang): pattern = f&#39;.*{&quot;.*&quot;.join(kang)}.*&#39; return re.match(pattern,word) and len(word) != len(kang) . for word,kang in kang_pairs: is_or_not = &quot; not &quot; if is_kang_word(word.upper(), kang.upper()): is_or_not = &quot; &quot; print(f&quot;{word.upper()} is{is_or_not}a kangaroo word for {kang.upper()}&quot;) . FOOTBALL is a kangaroo word for BALL ALE is not a kangaroo word for APPLE APPLE is a kangaroo word for ALE CLEMSON is a kangaroo word for SON ALLOCATE is a kangaroo word for ALLOT MERCER is not a kangaroo word for CERR BITCH is not a kangaroo word for BITCH EEEEEEEE is a kangaroo word for EEEEEEE .",
             "url": "https://szagar.github.io/cv/interview/2022/01/02/interview_kangaroo_words.html",
@@ -410,7 +421,7 @@
     
   
     
-        ,"post38": {
+        ,"post39": {
             "title": "Bookmarks - 2022-05-30",
             "content": "My stuff . cv | fp-blog | github:fp-blog | github:cv | . Watch list . talk python git | . Reading list . How to setup google domain for github pages | . Blogs . bta | Automation Panda | Lj Miranda - data scientist blog setup | Arjan Codes | death.andgravity | . Articles . Pandas, loading csv | Pandas, time series | Mermaid Create diagrams quickly and effortlessly 1 | Mermaid Create diagrams quickly and effortlessly 2 link *the-concept-of-maximum-adverse-excursion-mae | The unreasonable effectiveness of f‍-‍strings and re.VERBOSE | . Reference . jekyll docs | minima/README.md | Collections | . | EasyLanguage Object Reference | . Systematic firms . Two Sigma | Renaissance | Bridgewater | D E Shaw &amp; Co | Marathon Asset Management | AQR Capital Management | Winton | Cow Harbor Systems | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/2022/01/01/Bookmarks.html",
@@ -421,7 +432,7 @@
     
   
     
-        ,"post39": {
+        ,"post40": {
             "title": "Markedown notes",
             "content": "Notebook markdown . This adds a linked superscript 15 . 15. This is the actual footnote↩ . This adds a linked superscript 20 . 20. This is the actual footnote; with a link as well! and a single quote &#39; too!↩ .",
             "url": "https://szagar.github.io/cv/markdown/notes/2020/05/27/markedown_notes.html",
@@ -432,7 +443,7 @@
     
   
     
-        ,"post40": {
+        ,"post41": {
             "title": "Fastpages notes",
             "content": "Fastpages . fastai forums | fastpages repo | repo README | upgrading guide | . Fastpages, developing locally . Run server locally Pay attention to the emitted logs when you save your notebooks or files. Often, you will see errors here that will give you important clues. | . | When developing locally Jupyter notebooks are converted to markdown files in the _posts folder. Take a look at the problematic blog posts and see if you can spot the offending HTML or markdown in that code. . | Use your browser&#39;s developer tools to see if there are any errors. Common errors are: . not able to find images because they have not been saved into the right folder, | javascript or other errors. | | If you receive a Jekyll build error or a Liquid error, search for this error on Stack Overflow to provide more insight on the problem | . Frequent Errors . Malformed front matter must be valid YAML | escape special chars with double quotes - title: &quot;Deep learning: A tutorial&quot; | YAML tutorial | . | FAQ | . Customize Fastpages . minima theme | .",
             "url": "https://szagar.github.io/cv/fastpages/jupyter/2020/05/27/development_bookmarks.html",
@@ -443,7 +454,7 @@
     
   
     
-        ,"post41": {
+        ,"post42": {
             "title": "Fastpages Notebook Blog Post",
             "content": "About . This notebook is a demonstration of some of capabilities of fastpages with notebooks. . With fastpages you can save your jupyter notebooks into the _notebooks folder at the root of your repository, and they will be automatically be converted to Jekyll compliant blog posts! . Front Matter . The first cell in your Jupyter Notebook or markdown blog post contains front matter. Front matter is metadata that can turn on/off options in your Notebook. It is formatted like this: . # &quot;My Title&quot; &gt; &quot;Awesome summary&quot; - toc:true- branch: master - badges: true - comments: true - author: Hamel Husain &amp; Jeremy Howard - categories: [fastpages, jupyter] . Setting toc: true will automatically generate a table of contents | Setting badges: true will automatically include GitHub and Google Colab links to your notebook. | Setting comments: true will enable commenting on your blog post, powered by utterances. | . The title and description need to be enclosed in double quotes only if they include special characters such as a colon. More details and options for front matter can be viewed on the front matter section of the README. . Markdown Shortcuts . A #hide comment at the top of any code cell will hide both the input and output of that cell in your blog post. . A #hide_input comment at the top of any code cell will only hide the input of that cell. . The comment #hide_input was used to hide the code that produced this. . put a #collapse-hide flag at the top of any cell if you want to hide that cell by default, but give the reader the option to show it: . import pandas as pd import altair as alt . . put a #collapse-show flag at the top of any cell if you want to show that cell by default, but give the reader the option to hide it: . cars = &#39;https://vega.github.io/vega-datasets/data/cars.json&#39; movies = &#39;https://vega.github.io/vega-datasets/data/movies.json&#39; sp500 = &#39;https://vega.github.io/vega-datasets/data/sp500.csv&#39; stocks = &#39;https://vega.github.io/vega-datasets/data/stocks.csv&#39; flights = &#39;https://vega.github.io/vega-datasets/data/flights-5k.json&#39; . . place a #collapse-output flag at the top of any cell if you want to put the output under a collapsable element that is closed by default, but give the reader the option to open it: . print(&#39;The comment #collapse-output was used to collapse the output of this cell by default but you can expand it.&#39;) . The comment #collapse-output was used to collapse the output of this cell by default but you can expand it. . . Interactive Charts With Altair . Charts made with Altair remain interactive. Example charts taken from this repo, specifically this notebook. . Example 1: DropDown . # use specific hard-wired values as the initial selected values selection = alt.selection_single( name=&#39;Select&#39;, fields=[&#39;Major_Genre&#39;, &#39;MPAA_Rating&#39;], init={&#39;Major_Genre&#39;: &#39;Drama&#39;, &#39;MPAA_Rating&#39;: &#39;R&#39;}, bind={&#39;Major_Genre&#39;: alt.binding_select(options=genres), &#39;MPAA_Rating&#39;: alt.binding_radio(options=mpaa)} ) # scatter plot, modify opacity based on selection alt.Chart(df).mark_circle().add_selection( selection ).encode( x=&#39;Rotten_Tomatoes_Rating:Q&#39;, y=&#39;IMDB_Rating:Q&#39;, tooltip=&#39;Title:N&#39;, opacity=alt.condition(selection, alt.value(0.75), alt.value(0.05)) ) . Example 2: Tooltips . alt.Chart(df).mark_circle().add_selection( alt.selection_interval(bind=&#39;scales&#39;, encodings=[&#39;x&#39;]) ).encode( alt.X(&#39;Rotten_Tomatoes_Rating&#39;, type=&#39;quantitative&#39;), alt.Y(&#39;IMDB_Rating&#39;, type=&#39;quantitative&#39;, axis=alt.Axis(minExtent=30)), # y=alt.Y(&#39;IMDB_Rating:Q&#39;, ), # use min extent to stabilize axis title placement tooltip=[&#39;Title:N&#39;, &#39;Release_Date:N&#39;, &#39;IMDB_Rating:Q&#39;, &#39;Rotten_Tomatoes_Rating:Q&#39;] ).properties( width=500, height=400 ) . Example 3: More Tooltips . label = alt.selection_single( encodings=[&#39;x&#39;], # limit selection to x-axis value on=&#39;mouseover&#39;, # select on mouseover events nearest=True, # select data point nearest the cursor empty=&#39;none&#39; # empty selection includes no data points ) # define our base line chart of stock prices base = alt.Chart().mark_line().encode( alt.X(&#39;date:T&#39;), alt.Y(&#39;price:Q&#39;, scale=alt.Scale(type=&#39;log&#39;)), alt.Color(&#39;symbol:N&#39;) ) alt.layer( base, # base line chart # add a rule mark to serve as a guide line alt.Chart().mark_rule(color=&#39;#aaa&#39;).encode( x=&#39;date:T&#39; ).transform_filter(label), # add circle marks for selected time points, hide unselected points base.mark_circle().encode( opacity=alt.condition(label, alt.value(1), alt.value(0)) ).add_selection(label), # add white stroked text to provide a legible background for labels base.mark_text(align=&#39;left&#39;, dx=5, dy=-5, stroke=&#39;white&#39;, strokeWidth=2).encode( text=&#39;price:Q&#39; ).transform_filter(label), # add text labels for stock prices base.mark_text(align=&#39;left&#39;, dx=5, dy=-5).encode( text=&#39;price:Q&#39; ).transform_filter(label), data=stocks ).properties( width=500, height=400 ) . Data Tables . You can display tables per the usual way in your blog: . df[[&#39;Title&#39;, &#39;Worldwide_Gross&#39;, &#39;Production_Budget&#39;, &#39;Distributor&#39;, &#39;MPAA_Rating&#39;, &#39;IMDB_Rating&#39;, &#39;Rotten_Tomatoes_Rating&#39;]].head() . Title Worldwide_Gross Production_Budget Distributor MPAA_Rating IMDB_Rating Rotten_Tomatoes_Rating . 0 The Land Girls | 146083.0 | 8000000.0 | Gramercy | R | 6.1 | NaN | . 1 First Love, Last Rites | 10876.0 | 300000.0 | Strand | R | 6.9 | NaN | . 2 I Married a Strange Person | 203134.0 | 250000.0 | Lionsgate | None | 6.8 | NaN | . 3 Let&#39;s Talk About Sex | 373615.0 | 300000.0 | Fine Line | None | NaN | 13.0 | . 4 Slam | 1087521.0 | 1000000.0 | Trimark | R | 3.4 | 62.0 | . Images . Local Images . You can reference local images and they will be copied and rendered on your blog automatically. You can include these with the following markdown syntax: . ![](my_icons/fastai_logo.png) . . Remote Images . Remote images can be included with the following markdown syntax: . ![](https://image.flaticon.com/icons/svg/36/36686.svg) . . Animated Gifs . Animated Gifs work, too! . ![](https://upload.wikimedia.org/wikipedia/commons/7/71/ChessPawnSpecialMoves.gif) . . Captions . You can include captions with markdown images like this: . ![](https://www.fast.ai/images/fastai_paper/show_batch.png &quot;Credit: https://www.fast.ai/2020/02/13/fastai-A-Layered-API-for-Deep-Learning/&quot;) . . Other Elements . GitHub Flavored Emojis . Typing I give this post two :+1:! will render this: . I give this post two :+1:! . Tweetcards . Typing &gt; twitter: https://twitter.com/jakevdp/status/1204765621767901185?s=20 will render this: Altair 4.0 is released! https://t.co/PCyrIOTcvvTry it with: pip install -U altairThe full list of changes is at https://t.co/roXmzcsT58 ...read on for some highlights. pic.twitter.com/vWJ0ZveKbZ . &mdash; Jake VanderPlas (@jakevdp) December 11, 2019 . Youtube Videos . Typing &gt; youtube: https://youtu.be/XfoYk_Z5AkI will render this: . Boxes / Callouts . Typing &gt; Warning: There will be no second warning! will render this: . Warning: There will be no second warning! . Typing &gt; Important: Pay attention! It&#39;s important. will render this: . Important: Pay attention! It&#8217;s important. . Typing &gt; Tip: This is my tip. will render this: . Tip: This is my tip. . Typing &gt; Note: Take note of this. will render this: . Note: Take note of this. . Typing &gt; Note: A doc link to [an example website: fast.ai](https://www.fast.ai/) should also work fine. will render in the docs: . Note: A doc link to an example website: fast.ai should also work fine. . Footnotes . You can have footnotes in notebooks, however the syntax is different compared to markdown documents. This guide provides more detail about this syntax, which looks like this: . For example, here is a footnote {% fn 1 %}. And another {% fn 2 %} {{ &#39;This is the footnote.&#39; | fndetail: 1 }} {{ &#39;This is the other footnote. You can even have a [link](www.github.com)!&#39; | fndetail: 2 }} . For example, here is a footnote 1. . And another 2 . 1. This is the footnote.↩ . 2. This is the other footnote. You can even have a link!↩ .",
             "url": "https://szagar.github.io/cv/jupyter/2020/02/20/test.html",
